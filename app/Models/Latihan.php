@@ -9,7 +9,12 @@ class Latihan extends Model
 {
     use HasFactory;
     protected $table = 'latihan';
-    protected $fillable = ['kode', 'nama_teknik'];
+    protected $fillable = [
+            'kode',
+            'nama_teknik',
+            'alat',
+        ];
+
 
     public function rekomendasi()
     {

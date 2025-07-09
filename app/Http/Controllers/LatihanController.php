@@ -23,9 +23,10 @@ class LatihanController extends Controller
         $request->validate([
             'kode' => 'required|unique:latihan,kode',
             'nama_teknik' => 'required|string|max:255',
+            'alat' => 'required|string|max:255',
         ]);
 
-        Latihan::create($request->only('kode', 'nama_teknik'));
+        Latihan::create($request->only('kode', 'nama_teknik', 'alat'));
 
         return redirect()->route('latihan.index')->with('success', 'Teknik latihan berhasil ditambahkan.');
     }
@@ -43,9 +44,10 @@ class LatihanController extends Controller
         $request->validate([
             'kode' => 'required|unique:latihan,kode,' . $id,
             'nama_teknik' => 'required|string|max:255',
+            'alat' => 'required|string|max:255',
         ]);
 
-        $latihan->update($request->only('kode', 'nama_teknik'));
+        $latihan->update($request->only('kode', 'nama_teknik', 'alat'));
 
         return redirect()->route('latihan.index')->with('success', 'Data berhasil diperbarui.');
     }

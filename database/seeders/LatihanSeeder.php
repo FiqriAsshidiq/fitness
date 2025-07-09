@@ -12,33 +12,33 @@ class LatihanSeeder extends Seeder
      */
     public function run(): void
     {
-        $teknik = [
-            ['kode' => 'L1', 'nama_teknik' => 'Barbell Bench Press'],
-            ['kode' => 'L2', 'nama_teknik' => 'Front Squat'],
-            ['kode' => 'L3', 'nama_teknik' => 'Push Up'],
-            ['kode' => 'L4', 'nama_teknik' => 'Chest Fly'],
-            ['kode' => 'L5', 'nama_teknik' => 'Overhead Press'],
-            ['kode' => 'L6', 'nama_teknik' => 'Arnold Press'],
-            ['kode' => 'L7', 'nama_teknik' => 'Lateral Raise'],
-            ['kode' => 'L8', 'nama_teknik' => 'Pull-Up'],
-            ['kode' => 'L9', 'nama_teknik' => 'Lat Pulldown'],
-            ['kode' => 'L10', 'nama_teknik' => 'Barbell Row'],
-            ['kode' => 'L11', 'nama_teknik' => 'Seated Cable Row'],
-            ['kode' => 'L12', 'nama_teknik' => 'Barbell Curl'],
-            ['kode' => 'L13', 'nama_teknik' => 'Dumbbell Curl'],
-            ['kode' => 'L14', 'nama_teknik' => 'Hammer Curl'],
-            ['kode' => 'L15', 'nama_teknik' => 'Barbell Squat'],
-            ['kode' => 'L16', 'nama_teknik' => 'Leg Curl'],
-            ['kode' => 'L17', 'nama_teknik' => 'Dumbbell Bench Press'],
-            ['kode' => 'L18', 'nama_teknik' => 'Leg Press'],
-            ['kode' => 'L19', 'nama_teknik' => 'Deadlift'],
-            ['kode' => 'L20', 'nama_teknik' => 'Burpee, Snatch'],
-            ['kode' => 'L21', 'nama_teknik' => 'Clean & Press'],
-            ['kode' => 'L22', 'nama_teknik' => 'Face Pull'],
-            ['kode' => 'L23', 'nama_teknik' => 'Rear Delt Row'],
+        $data = [
+            ['kode' => 'L1', 'nama_teknik' => 'Barbell Bench Press', 'alat' => 'Barbell'],
+            ['kode' => 'L2', 'nama_teknik' => 'Front Squat', 'alat' => 'Barbell'],
+            ['kode' => 'L3', 'nama_teknik' => 'Push Up', 'alat' => 'Bodyweight'],
+            ['kode' => 'L4', 'nama_teknik' => 'Chest Fly', 'alat' => 'Dumbbell'],
+            ['kode' => 'L5', 'nama_teknik' => 'Overhead Press', 'alat' => 'Barbell'],
+            ['kode' => 'L6', 'nama_teknik' => 'Arnold Press', 'alat' => 'Dumbbell'],
+            ['kode' => 'L7', 'nama_teknik' => 'Lateral Raise', 'alat' => 'Dumbbell'],
+            ['kode' => 'L8', 'nama_teknik' => 'Pull-Up', 'alat' => 'Pull-up Bar'],
+            ['kode' => 'L9', 'nama_teknik' => 'Lat Pulldown', 'alat' => 'Lat Pulldown Machine'],
+            ['kode' => 'L10', 'nama_teknik' => 'Barbell Row', 'alat' => 'Barbell'],
+            ['kode' => 'L11', 'nama_teknik' => 'Seated Cable Row', 'alat' => 'Cable Machine'],
+            ['kode' => 'L12', 'nama_teknik' => 'Barbell Curl', 'alat' => 'Barbell'],
+            ['kode' => 'L13', 'nama_teknik' => 'Dumbbell Curl', 'alat' => 'Dumbbell'],
+            ['kode' => 'L14', 'nama_teknik' => 'Hammer Curl', 'alat' => 'Dumbbell'],
+            ['kode' => 'L15', 'nama_teknik' => 'Barbell Squat', 'alat' => 'Barbell'],
+            ['kode' => 'L16', 'nama_teknik' => 'Leg Curl', 'alat' => 'Leg Curl Machine'],
+            ['kode' => 'L17', 'nama_teknik' => 'Dumbbell Bench Press', 'alat' => 'Dumbbell'],
+            ['kode' => 'L18', 'nama_teknik' => 'Leg Press', 'alat' => 'Leg Press Machine'],
+            ['kode' => 'L19', 'nama_teknik' => 'Deadlift', 'alat' => 'Barbell'],
+            ['kode' => 'L20', 'nama_teknik' => 'Burpee', 'alat' => 'Bodyweight'],
+            ['kode' => 'L21', 'nama_teknik' => 'Clean & Press', 'alat' => 'Barbell'],
+            ['kode' => 'L22', 'nama_teknik' => 'Face Pull', 'alat' => 'Cable Machine'],
+            ['kode' => 'L23', 'nama_teknik' => 'Rear Delt Row', 'alat' => 'Cable Machine'],
         ];
 
-        foreach ($teknik as $item) {
+        foreach ($data as $item) {
             Latihan::create($item);
         }
     }

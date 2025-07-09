@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('latihan', function (Blueprint $table) {
+        Schema::create('pengalaman', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();
-            $table->string('nama_teknik');
-            $table->string('alat');
+            $table->string('kode');            
+            $table->string('level')->unique(); // contoh: pemula, menengah, lanjutan
+            $table->text('deskripsi')->nullable();
             $table->timestamps();       
          });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('latihan');
+        Schema::dropIfExists('pengalaman');
     }
 };

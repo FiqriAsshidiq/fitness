@@ -35,7 +35,7 @@
                             <td>{{ $item->metode_latihan }}</td>
                             <td>
                                 @foreach ($item->latihan as $latihan)
-                                    <span class="badge bg-info">{{ $latihan->kode }}</span><br>
+                                    <span >{{ $latihan->nama_teknik }}</span><br>
                                 @endforeach
                             </td>
                             <td>{{ $item->keterangan }}</td>

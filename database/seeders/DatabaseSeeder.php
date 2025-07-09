@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             TargetOtotSeeder::class,
             LatihanSeeder::class,      
+            PengalamanSeeder::class,
+            TujuanLatihanSeeder::class,
+            AktivitasFisikSeeder::class,
         ]);    
     }
 }

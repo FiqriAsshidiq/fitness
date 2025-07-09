@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('latihan', function (Blueprint $table) {
+        Schema::create('aktivitas_fisik', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();
-            $table->string('nama_teknik');
-            $table->string('alat');
-            $table->timestamps();       
-         });
+            $table->string('tingkat'); // contoh: Sedentary, Aktif, Sangat Aktif
+            $table->decimal('nilai', 3, 2); // contoh: 1.2, 1.375, dst
+            $table->timestamps();        
+        });
     }
 
     /**
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('latihan');
+        Schema::dropIfExists('aktivitas_fisik');
     }
 };

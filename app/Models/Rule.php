@@ -9,6 +9,16 @@ class Rule extends Model
 {
     use HasFactory;
     protected $table = 'rules';
+    protected $fillable = [
+        'kode', 
+        'pengalaman_id',
+        'tujuan_latihan_id'
+    ];
+
+    public function pengalaman()
+    {
+        return $this->belongsTo(Pengalaman::class);
+    }
 
     public function targetOtot()
     {
@@ -18,6 +28,11 @@ class Rule extends Model
     public function rekomendasi()
     {
         return $this->hasOne(Rekomendasi::class);
+    }
+
+    public function tujuanLatihan()
+    {
+        return $this->belongsTo(TujuanLatihan::class, 'tujuan_latihan_id');
     }
 
 }

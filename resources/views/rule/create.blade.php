@@ -1,38 +1,59 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight" style="font-size: 40px;">
-            {{ __('Tambah Aturan') }}
+        <h2 class="text-xl font-semibold text-white leading-tight" style="font-size: 30px;">
+            {{ __('Tambah Rule') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+    <div class="py-10">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 bg-white p-6 rounded shadow">
+            <form method="POST" action="{{ route('rule.store') }}">
+                @csrf
 
-                <form action="{{ route('rule.store') }}" method="POST">
-                    @csrf
+                <div class="mb-4">
+                    <label class="block font-semibold">Kode Rule</label>
+                    <input type="text" name="kode" class="form-input w-full" value="{{ old('kode') }}" required>
+                </div>
 
-                    <div class="mb-3">
-                        <label for="target_otot">Pilih Target Otot:</label>
-                        <div class="row">
-                            @foreach($targetOtot as $otot)
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="target_otot[]" value="{{ $otot->id }}" id="otot{{ $otot->id }}">
-                                        <label class="form-check-label" for="otot{{ $otot->id }}">
-                                            {{ $otot->kode }} - {{ $otot->fokus }}
-                                        </label>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                <div class="mb-4">
+                    <label class="block font-semibold">Tingkat Pengalaman</label>
+                    <select name="pengalaman_id" class="form-select w-full" required>
+                        <option value="">-- Pilih Pengalaman --</option>
+                        @foreach($pengalaman as $item)
+                            <option value="{{ $item->id }}" {{ old('pengalaman_id') == $item->id ? 'selected' : '' }}>
+                                {{ $item->level }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-semibold">Tujuan Latihan</label>
+                    <select name="tujuan_latihan_id" class="form-select w-full" required>
+                        <option value="">-- Pilih Tujuan --</option>
+                        @foreach($tujuan as $item)
+                            <option value="{{ $item->id }}" {{ old('tujuan_latihan_id') == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-semibold">Target Otot</label>
+                    <div class="grid grid-cols-1 gap-2">
+                        @foreach($targetOtot as $otot)
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="target_otot[]" value="{{ $otot->id }}" class="mr-2"
+                                    {{ in_array($otot->id, old('target_otot', [])) ? 'checked' : '' }}>
+                                {{ $otot->kode }} - {{ $otot->fokus }}
+                            </label>
+                        @endforeach
                     </div>
+                </div>
 
-                    <button type="submit" class="btn btn-success">Simpan</button>
-                    <a href="{{ route('rule') }}" class="btn btn-secondary">Kembali</a>
-                </form>
-
-            </div>
+                <x-primary-button>Simpan</x-primary-button>
+            </form>
         </div>
     </div>
 </x-app-layout>

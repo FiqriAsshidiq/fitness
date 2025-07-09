@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();        });
+            $table->string('kode');
+            $table->timestamps();
+            $table->foreignId('pengalaman_id')->constrained('pengalaman')->onDelete('cascade');
+            $table->foreignId('tujuan_latihan_id')->constrained('tujuan_latihan')->onDelete('cascade');
+
+         });
     }
 
     /**
