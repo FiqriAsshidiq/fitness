@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('konsultasi_target_otot', function (Blueprint $table) {
             $table->id();
             $table->foreignId('konsultasi_id')->constrained('konsultasi')->onDelete('cascade');
-            $table->foreignId('target_otot_id')->constrained('target_otot')->onDelete('cascade');        });
+            $table->foreignId('target_otot_id')->constrained('target_otot')->onDelete('cascade');        
+     
+        });
     }
 
     /**
