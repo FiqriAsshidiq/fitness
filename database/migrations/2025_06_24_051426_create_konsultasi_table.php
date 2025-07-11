@@ -17,6 +17,8 @@ return new class extends Migration
             $table->float('berat_badan'); 
             $table->float('tinggi_badan'); 
             $table->integer('usia'); 
+            $table->float('bmr')->nullable(); 
+            $table->float('tdee')->nullable(); 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('aktivitas_fisik_id')->constrained('aktivitas_fisik')->onDelete('cascade');
             $table->foreignId('rekomendasi_id')->nullable()->constrained('rekomendasi')->onDelete('set null');

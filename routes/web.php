@@ -9,7 +9,7 @@ use App\Http\Controllers\RuleController;
 use App\Http\Controllers\KonsultasiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HasilRekomendasiController;
 
 Route::get('/', function () {
     return view('login'); 
@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/rule/{id}', [RuleController::class, 'update'])->name('rule.update');
     Route::delete('/rule/{id}', [RuleController::class, 'destroy'])->name('rule.destroy');
     
+Route::get('/hasil-saya', [HasilRekomendasiController::class, 'index'])->name('hasil.saya');
+
 });
 
 // Logout

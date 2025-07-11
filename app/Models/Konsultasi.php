@@ -20,6 +20,8 @@ protected $fillable = [
         'berat_badan',
         'tinggi_badan',
         'usia',
+        'bmr',
+        'tdee',
     ];
 
     public function targetOtot()

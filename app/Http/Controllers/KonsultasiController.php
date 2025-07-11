@@ -37,6 +37,7 @@ class KonsultasiController extends Controller
             'pengalaman_id'        => 'required|exists:pengalaman,id',
             'tujuan_latihan_id'    => 'required|exists:tujuan_latihan,id',
         ]);
+        
 
         $user = Auth::user();
 
@@ -64,6 +65,8 @@ class KonsultasiController extends Controller
             'aktivitas_fisik_id' => $request->aktivitas_fisik_id,
             'pengalaman_id'      => $request->pengalaman_id,
             'tujuan_latihan_id'  => $request->tujuan_latihan_id,
+            'bmr' => $bmr,
+            'tdee' => $tdee,
         ]);
 
         // Simpan target otot (pivot)
@@ -105,9 +108,6 @@ class KonsultasiController extends Controller
             'aktivitasFisik'
         ])->findOrFail($id);
 
-        $bmr = session('bmr');
-        $tdee = session('tdee');
-
-        return view('konsultasi.hasil', compact('konsultasi', 'bmr', 'tdee'));
+        return view('konsultasi.hasil', compact('konsultasi'));
     }
 }

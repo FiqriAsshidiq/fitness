@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('tujuan_latihan', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();         // contoh: TL1, TL2, dll
-            $table->string('nama');                   // contoh: Fat Loss, Bulking, Maintenance
-            $table->text('deskripsi')->nullable();    // opsional penjelasan
-            $table->timestamps();        });
+            $table->string('kode')->unique();         
+            $table->string('nama');                   
+            $table->text('deskripsi')->nullable();   
+            $table->timestamps();       
+         });
     }
 
     /**

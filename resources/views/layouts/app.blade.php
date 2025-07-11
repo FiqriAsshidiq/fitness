@@ -96,6 +96,11 @@
                             <i class="fas fa-comments me-2"></i> Konsultasi
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('hasil.saya') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> Hasil Rekomendasi
+                        </a>
+                    </li>
                     @endif
                 </ul>                          
                 <hr>
