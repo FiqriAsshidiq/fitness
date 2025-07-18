@@ -24,11 +24,12 @@ class LatihanController extends Controller
             'kode' => 'required|unique:latihan,kode',
             'nama_teknik' => 'required|string|max:255',
             'alat' => 'required|string|max:255',
+            'kategori_otot' => 'required|string|max:255',
         ]);
 
-        Latihan::create($request->only('kode', 'nama_teknik', 'alat'));
+        Latihan::create($request->only('kode', 'nama_teknik', 'alat', 'kategori_otot'));
 
-        return redirect()->route('latihan.index')->with('success', 'Teknik latihan berhasil ditambahkan.');
+        return redirect()->route('latihan')->with('success', 'Teknik latihan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -45,11 +46,12 @@ class LatihanController extends Controller
             'kode' => 'required|unique:latihan,kode,' . $id,
             'nama_teknik' => 'required|string|max:255',
             'alat' => 'required|string|max:255',
+            'kategori_otot' => 'required|string|max:255',
         ]);
 
-        $latihan->update($request->only('kode', 'nama_teknik', 'alat'));
+        $latihan->update($request->only('kode', 'nama_teknik', 'alat', 'kategori_otot'));
 
-        return redirect()->route('latihan.index')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('latihan')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -57,6 +59,6 @@ class LatihanController extends Controller
         $latihan = Latihan::findOrFail($id);
         $latihan->delete();
 
-        return redirect()->route('latihan.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('latihan')->with('success', 'Data berhasil dihapus.');
     }
 }

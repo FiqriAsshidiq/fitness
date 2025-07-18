@@ -22,6 +22,8 @@ protected $fillable = [
         'usia',
         'bmr',
         'tdee',
+        'kalori',
+        'protein',
     ];
 
     public function targetOtot()

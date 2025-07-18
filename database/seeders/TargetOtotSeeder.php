@@ -14,9 +14,9 @@ class TargetOtotSeeder extends Seeder
 public function run(): void
     {
         $data = [
-            ['kode' => 'U01', 'fokus' => 'melatih otot tubuh bagian atas'],
-            ['kode' => 'L01', 'fokus' => 'melatih otot tubuh bagian bawah'],
-            ['kode' => 'F01', 'fokus' => 'melatih seluruh bagian tubuh'],
+        ['kode' => 'U01', 'fokus' => 'upper body'],
+        ['kode' => 'L01', 'fokus' => 'lower body'],
+        ['kode' => 'F01', 'fokus' => 'full body'],
         ];
 
         foreach ($data as $item) {

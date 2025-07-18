@@ -21,7 +21,7 @@
                         <label class="block font-semibold">Nama Teknik</label>
                         <input type="text" name="nama_teknik" class="form-control w-full border rounded px-3 py-2" required>
                     </div>
-
+                    
                     <div class="flex items-center gap-4">
                         <button class="btn btn-success">Simpan</button>
                         <a href="{{ route('latihan') }}" class="btn btn-secondary">Kembali</a>

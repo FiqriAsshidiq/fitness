@@ -9,11 +9,11 @@ use App\Models\Rule;
 use App\Models\Pengalaman;
 use App\Models\TujuanLatihan;
 use App\Models\AktivitasFisik;
+use App\Models\Latihan;
 use Illuminate\Support\Facades\Auth;
 
 class KonsultasiController extends Controller
 {
-    // Tampilkan form konsultasi
     public function index()
     {
         $targetOtot = TargetOtot::all();
@@ -24,7 +24,6 @@ class KonsultasiController extends Controller
         return view('konsultasi.index', compact('targetOtot', 'pengalaman', 'aktivitas', 'tujuanLatihan'));
     }
 
-    // Proses konsultasi dan rekomendasi
     public function proses(Request $request)
     {
         $request->validate([
@@ -37,16 +36,15 @@ class KonsultasiController extends Controller
             'pengalaman_id'        => 'required|exists:pengalaman,id',
             'tujuan_latihan_id'    => 'required|exists:tujuan_latihan,id',
         ]);
-        
 
         $user = Auth::user();
 
-        // Hitung BMR
         $bb = $request->berat_badan;
         $tb = $request->tinggi_badan;
         $usia = $request->usia;
         $gender = $request->jenis_kelamin;
 
+        // Hitung BMR
         $bmr = ($gender === 'pria')
             ? (10 * $bb + 6.25 * $tb - 5 * $usia + 5)
             : (10 * $bb + 6.25 * $tb - 5 * $usia - 161);
@@ -54,6 +52,29 @@ class KonsultasiController extends Controller
         // Hitung TDEE
         $aktivitas = AktivitasFisik::find($request->aktivitas_fisik_id);
         $tdee = $bmr * $aktivitas->nilai;
+
+        // Hitung kalori & protein berdasarkan tujuan
+        $tujuan = TujuanLatihan::find($request->tujuan_latihan_id)->nama;
+        $tujuanLower = strtolower($tujuan);
+
+        switch ($tujuanLower) {
+            case 'fat loss':
+            case 'cutting':
+                $kalori = $tdee - 500;
+                $protein = $bb * 2.2;
+                break;
+
+            case 'bulking':
+                $kalori = $tdee + 300;
+                $protein = $bb * 2.0;
+                break;
+
+            case 'maintenance':
+            default:
+                $kalori = $tdee;
+                $protein = $bb * 1.8;
+                break;
+        }
 
         // Simpan konsultasi
         $konsultasi = Konsultasi::create([
@@ -65,23 +86,21 @@ class KonsultasiController extends Controller
             'aktivitas_fisik_id' => $request->aktivitas_fisik_id,
             'pengalaman_id'      => $request->pengalaman_id,
             'tujuan_latihan_id'  => $request->tujuan_latihan_id,
-            'bmr' => $bmr,
-            'tdee' => $tdee,
+            'bmr'                => $bmr,
+            'tdee'               => $tdee,
+            'kalori'             => round($kalori),
+            'protein'            => round($protein),
         ]);
 
-        // Simpan target otot (pivot)
         $konsultasi->targetOtot()->attach($request->target_otot);
 
-        // Ambil data target otot terpilih (diurutkan)
         $selected = collect($request->target_otot)->map(fn($id) => (int) $id)->sort()->values()->all();
 
-        // Ambil semua rule yang cocok dengan pengalaman dan tujuan
         $rules = Rule::with('targetOtot', 'rekomendasi')
             ->where('pengalaman_id', $request->pengalaman_id)
             ->where('tujuan_latihan_id', $request->tujuan_latihan_id)
             ->get();
 
-        // Cek kecocokan rule
         foreach ($rules as $rule) {
             $ruleTargetIds = $rule->targetOtot->pluck('id')->sort()->values()->all();
 
@@ -93,21 +112,55 @@ class KonsultasiController extends Controller
             }
         }
 
-        // Redirect ke hasil
         return redirect()->route('konsultasi.hasil', $konsultasi->id)
                          ->with(['bmr' => $bmr, 'tdee' => $tdee]);
     }
 
-    // Tampilkan hasil konsultasi
     public function hasil($id)
     {
         $konsultasi = Konsultasi::with([
-            'targetOtot',
             'rekomendasi.latihan',
+            'tujuanLatihan',
             'pengalaman',
-            'aktivitasFisik'
+            'aktivitasFisik',
+            'targetOtot'
         ])->findOrFail($id);
 
-        return view('konsultasi.hasil', compact('konsultasi'));
+        $rekomendasi = $konsultasi->rekomendasi;
+        $jadwal = [];
+
+        if ($rekomendasi && $konsultasi->targetOtot->isNotEmpty()) {
+            $fokusOtot = strtolower($konsultasi->targetOtot->first()->fokus);
+
+            $latihan = $rekomendasi->latihan ?? collect();
+
+            switch ($fokusOtot) {
+                case 'upper body':
+                    $jadwal = [
+                        'Senin' => $latihan->where('kategori_otot', 'dada'),
+                        'Rabu'  => $latihan->where('kategori_otot', 'punggung'),
+                        'Jumat' => $latihan->where('kategori_otot', 'bahu'),
+                    ];
+                    break;
+
+                case 'lower body':
+                    $jadwal = [
+                        'Senin' => $latihan->where('kategori_otot', 'perut'),
+                        'Rabu'  => $latihan->where('kategori_otot', 'paha'),
+                        'Jumat' => $latihan->where('kategori_otot', 'kaki'),
+                    ];
+                    break;
+
+                case 'full body':
+                    $jadwal = [
+                        'Senin' => $latihan->whereIn('kategori_otot', ['dada', 'bahu', 'tricep']),
+                        'Rabu'  => $latihan->whereIn('kategori_otot', ['punggung', 'bicep']),
+                        'Jumat' => $latihan->whereIn('kategori_otot', ['paha', 'kaki', 'perut']),
+                    ];
+                    break;
+            }
+        }
+
+        return view('konsultasi.hasil', compact('konsultasi', 'jadwal'));
     }
 }

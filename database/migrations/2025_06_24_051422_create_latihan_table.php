@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kode')->unique();
             $table->string('nama_teknik');
             $table->string('alat');
+            $table->string('kategori_otot');
             $table->timestamps();       
          });
     }

@@ -49,7 +49,7 @@
                     <div class="shrink-0 flex items-center py-8">
                     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                        <img src="{{ asset('logodashboard.png') }}" alt="POS System" class="pos-img">
+                        <img src="{{ asset('') }}" alt="POS System" class="pos-img">
                     </a>
                 </div>
                 <hr>
