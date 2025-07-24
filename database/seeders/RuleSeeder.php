@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Rekomendasi;
-use App\Models\Rule;
-use App\Models\TargetOtot;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class RuleSeeder extends Seeder
 {
@@ -15,25 +13,97 @@ class RuleSeeder extends Seeder
      */
     public function run(): void
     {
-        $rules = [
-            'RM1' => ['T01', 'T02', 'T04'],
-            'RM2' => ['T03', 'T05', 'T06'],
-            'RM3' => ['T01', 'T02', 'T03', 'T04', 'T05', 'T06'],
-            'RM4' => ['T07', 'T08', 'T09', 'T10'],
-            'RM5' => ['T01', 'T02', 'T03', 'T04', 'T05', 'T06', 'T07', 'T08', 'T09', 'T10'],
-        ];
-
-        foreach ($rules as $kodeRekomendasi => $targetOtotKodes) {
-            $rekomendasi = Rekomendasi::where('kode', $kodeRekomendasi)->first();
-            if ($rekomendasi) {
-                $rule = Rule::create([
-                    'rekomendasi_id' => $rekomendasi->id,
-                ]);
-
-                // Ambil id target otot berdasarkan kode
-                $targetIds = \App\Models\TargetOtot::whereIn('kode', $targetOtotKodes)->pluck('id');
-                $rule->targetOtot()->attach($targetIds);
-            }
-        }
+        DB::table('rules')->insert([
+            [
+                'id' => 1,
+                'kode' => 'R01',
+                'pengalaman_id' => 1,
+                'tujuan_latihan_id' => 1,
+                'kondisi_tubuh_id' => 1,
+                'created_at' => Carbon::parse('2025-07-23 23:13:32'),
+                'updated_at' => Carbon::parse('2025-07-23 23:13:32'),
+            ],
+            [
+                'id' => 2,
+                'kode' => 'R02',
+                'pengalaman_id' => 1,
+                'tujuan_latihan_id' => 2,
+                'kondisi_tubuh_id' => 1,
+                'created_at' => Carbon::parse('2025-07-23 23:14:54'),
+                'updated_at' => Carbon::parse('2025-07-23 23:14:54'),
+            ],
+            [
+                'id' => 3,
+                'kode' => 'R03',
+                'pengalaman_id' => 1,
+                'tujuan_latihan_id' => 3,
+                'kondisi_tubuh_id' => 1,
+                'created_at' => Carbon::parse('2025-07-23 23:16:07'),
+                'updated_at' => Carbon::parse('2025-07-23 23:16:07'),
+            ],
+            [
+                'id' => 4,
+                'kode' => 'R04',
+                'pengalaman_id' => 2,
+                'tujuan_latihan_id' => 1,
+                'kondisi_tubuh_id' => 1,
+                'created_at' => Carbon::parse('2025-07-23 23:16:36'),
+                'updated_at' => Carbon::parse('2025-07-23 23:16:36'),
+            ],
+            [
+                'id' => 5,
+                'kode' => 'R05',
+                'pengalaman_id' => 2,
+                'tujuan_latihan_id' => 2,
+                'kondisi_tubuh_id' => 1,
+                'created_at' => Carbon::parse('2025-07-23 23:17:23'),
+                'updated_at' => Carbon::parse('2025-07-23 23:17:23'),
+            ],
+            [
+                'id' => 6,
+                'kode' => 'R06',
+                'pengalaman_id' => 2,
+                'tujuan_latihan_id' => 3,
+                'kondisi_tubuh_id' => 1,
+                'created_at' => Carbon::parse('2025-07-23 23:18:09'),
+                'updated_at' => Carbon::parse('2025-07-23 23:18:09'),
+            ],
+            [
+                'id' => 8,
+                'kode' => 'R07',
+                'pengalaman_id' => 1,
+                'tujuan_latihan_id' => 1,
+                'kondisi_tubuh_id' => 2,
+                'created_at' => Carbon::parse('2025-07-23 23:21:29'),
+                'updated_at' => Carbon::parse('2025-07-23 23:21:29'),
+            ],
+            [
+                'id' => 9,
+                'kode' => 'R08',
+                'pengalaman_id' => 1,
+                'tujuan_latihan_id' => 2,
+                'kondisi_tubuh_id' => 2,
+                'created_at' => Carbon::parse('2025-07-23 23:22:17'),
+                'updated_at' => Carbon::parse('2025-07-23 23:22:17'),
+            ],
+            [
+                'id' => 10,
+                'kode' => 'R09',
+                'pengalaman_id' => 1,
+                'tujuan_latihan_id' => 3,
+                'kondisi_tubuh_id' => 2,
+                'created_at' => Carbon::parse('2025-07-23 23:23:11'),
+                'updated_at' => Carbon::parse('2025-07-23 23:23:11'),
+            ],
+            [
+                'id' => 11,
+                'kode' => 'R10',
+                'pengalaman_id' => 2,
+                'tujuan_latihan_id' => 1,
+                'kondisi_tubuh_id' => 2,
+                'created_at' => Carbon::parse('2025-07-23 23:24:03'),
+                'updated_at' => Carbon::parse('2025-07-23 23:24:03'),
+            ],
+        ]);
     }
 }

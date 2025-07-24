@@ -78,6 +78,6 @@ class HasilRekomendasiController extends Controller
             // ]);
         }
 
-        return view('konsultasi.hasil', compact('konsultasi', 'jadwal'));
+        return view('member.konsultasi.hasil', compact('konsultasi', 'jadwal'));
     }
 }

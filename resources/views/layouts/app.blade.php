@@ -44,12 +44,12 @@
         </style>
     </head>
         <body class="font-sans antialiased">
-            <div class="min-h-screen bg-gray-100 dark:bg-gray-900 d-flex">
+            <div class="min-h-screen d-flex">
                 <div class="d-none d-md-block flex-column flex-shrink-0 p-3 text-white" style="width: 280px; background-color: #fffcfc;">
                     <div class="shrink-0 flex items-center py-8">
                     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                        <img src="{{ asset('') }}" alt="POS System" class="pos-img">
+                        <img src="{{ asset('logodashboard2.png') }}" alt="POS System" class="pos-img">
                     </a>
                 </div>
                 <hr>
@@ -64,26 +64,49 @@
                     <!-- Admin -->
                     @if (auth()->user()->role_id === 1)
                     <li>
-                        <a href="{{ route('user') }}" class="nav-link text-white">
+                        <a href="{{ route('admin.user') }}" class="nav-link text-white">
                             <i class="fas fa-users me-2"></i> Manajemen User
                         </a>
                     </li>
-                    @endif
-                
-                    <!-- Trainer -->
-                    @if (auth()->user()->role_id === 2)
-                    <li>
-                        <a href="{{ route('latihan') }}" class="nav-link text-white">
+                     <li>
+                        <a href="{{ route('admin.latihan') }}" class="nav-link text-white">
                             <i class="fas fa-dumbbell me-2"></i> Latihan
                         </a>
                     </li>
+                     <li>
+                        <a href="{{ route('admin.kondisi_tubuh') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> Kondisi
+                        </a>
+                    </li>
+                     <li>
+                        <a href="{{ route('admin.aktivitasfisik.index') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> aktivitasfisik
+                        </a>
+                    </li>
+                     <li>
+                        <a href="{{ route('admin.gerakan') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> Gerakan
+                        </a>
+                    </li>
                     <li>
-                        <a href="{{ route('rekomendasi') }}" class="nav-link text-white">
+                    <a href="{{ route('admin.nutrisi') }}" class="nav-link text-white">
+                        <i class="fas fa-dumbbell me-2"></i> Nutrisi
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="{{ route('admin.saran.index') }}" class="nav-link text-white">
+                        <i class="fas fa-dumbbell me-2"></i> Nutrisi
+                    </a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{ route('admin.rekomendasi') }}" class="nav-link text-white">
                             <i class="fas fa-lightbulb me-2"></i> Rekomendasi
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('rule') }}" class="nav-link text-white">
+                        <a href="{{ route('admin.rule') }}" class="nav-link text-white">
                             <i class="fas fa-cogs me-2"></i> Aturan (Rule)
                         </a>
                     </li>
@@ -92,13 +115,28 @@
                     <!-- Member -->
                     @if (auth()->user()->role_id === 3)
                     <li>
-                        <a href="{{ route('konsultasi.index') }}" class="nav-link text-white">
+                        <a href="{{ route('member.konsultasi') }}" class="nav-link text-white">
                             <i class="fas fa-comments me-2"></i> Konsultasi
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('hasil.saya') }}" class="nav-link text-white">
+                        <a href="{{ route('member.hasil.saya') }}" class="nav-link text-white">
                             <i class="fas fa-dumbbell me-2"></i> Hasil Rekomendasi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member.gerakan') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> gerakan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member.nutrisi') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> Nutrisi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member.saran.create') }}" class="nav-link text-white">
+                            <i class="fas fa-dumbbell me-2"></i> Saran
                         </a>
                     </li>
                     @endif
@@ -138,7 +176,7 @@
 
                 <!-- Page Heading -->
                 @isset($header)
-                <header style="background-color: #0ea4e9;">
+                <header style="background-color: #e90e0e;">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

@@ -11,7 +11,7 @@ class Rekomendasi extends Model
     protected $table = 'rekomendasi';
 
     protected $fillable = [
-        'kode', 'metode_latihan', 'keterangan', 'rule_id'
+        'kode', 'metode_latihan', 'keterangan','nutrisi','catatan', 'rule_id'
     ];
 
     public function rule()

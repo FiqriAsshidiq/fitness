@@ -10,16 +10,13 @@ class Konsultasi extends Model
 {
     use HasFactory;
     protected $table = 'konsultasi';
-protected $fillable = [
+    protected $fillable = [
         'user_id',
         'pengalaman_id',
         'rekomendasi_id',
         'tujuan_latihan_id',
         'aktivitas_fisik_id',
-        'jenis_kelamin',
-        'berat_badan',
-        'tinggi_badan',
-        'usia',
+        'kondisi_tubuh_id',
         'bmr',
         'tdee',
         'kalori',
@@ -54,6 +51,11 @@ protected $fillable = [
     public function aktivitasFisik()
     {
         return $this->belongsTo(AktivitasFisik::class);
+    }
+
+    public function kondisiTubuh()
+    {
+        return $this->belongsTo(KondisiTubuh::class, 'kondisi_tubuh_id');
     }
 
 

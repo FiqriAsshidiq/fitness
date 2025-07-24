@@ -30,9 +30,13 @@
         <!-- Admin -->
         @if(auth()->user()->role_id === 1)
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('user')" :active="request()->routeIs('user')">
+            <x-responsive-nav-link :href="route('admin.user')" :active="request()->routeIs('user')">
                 {{ __('Manajemen Pengguna') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.latihan')" :active="request()->routeIs('latihan.*')">
+                {{ __('Latihan') }}
+            </x-responsive-nav-link>
+ 
         </div>
         @endif
 
@@ -40,13 +44,10 @@
         <!-- Trainer -->
         @if(auth()->user()->role_id === 2)
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('latihan')" :active="request()->routeIs('latihan.*')">
-                {{ __('Latihan') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('rekomendasi')" :active="request()->routeIs('rekomendasi.*')">
+            <x-responsive-nav-link :href="route('trainer.rekomendasi')" :active="request()->routeIs('rekomendasi.*')">
                 {{ __('Rekomendasi') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('rule')" :active="request()->routeIs('rule.*')">
+            <x-responsive-nav-link :href="route('trainer.rule')" :active="request()->routeIs('rule.*')">
                 {{ __('Aturan') }}
             </x-responsive-nav-link>
         </div>
@@ -55,7 +56,7 @@
         <!-- Member -->
         @if(auth()->user()->role_id === 3)
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('konsultasi.index')" :active="request()->routeIs('konsultasi.*')">
+            <x-responsive-nav-link :href="route('member.konsultasi')" :active="request()->routeIs('konsultasi.*')">
                 {{ __('Konsultasi') }}
             </x-responsive-nav-link>
         </div>

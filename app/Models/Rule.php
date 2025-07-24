@@ -12,7 +12,8 @@ class Rule extends Model
     protected $fillable = [
         'kode', 
         'pengalaman_id',
-        'tujuan_latihan_id'
+        'tujuan_latihan_id',
+        'kondisi_tubuh_id',
     ];
 
     public function pengalaman()
@@ -34,6 +35,12 @@ class Rule extends Model
     {
         return $this->belongsTo(TujuanLatihan::class, 'tujuan_latihan_id');
     }
+
+    public function kondisiTubuh()
+    {
+    return $this->belongsTo(KondisiTubuh::class);
+    }
+
 
 }
 

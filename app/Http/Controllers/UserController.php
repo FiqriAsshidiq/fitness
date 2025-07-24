@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         $data['roles'] = Role::all(); 
         $data['users'] = User::with('role')->get(); 
-        return view('user.index', $data); 
+        return view('admin.user.index', $data); 
     }
 
     // tambah
@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         
         $roles = Role::where('id', 3)->get();
-        return view('user.create', compact('roles'));
+        return view('admin.user.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class UserController extends Controller
             'role_id' => $request->role_id,
         ]);
     
-        return redirect()->route('user')->with('success', 'Akun berhasil ditambahkan.');
+        return redirect()->route('admin.user')->with('success', 'Akun berhasil ditambahkan.');
     }
     
     
@@ -90,7 +90,7 @@ class UserController extends Controller
 
         $user->update($dataToUpdate);
 
-        return redirect()->route('user')->with('success', 'User berhasil diperbarui.');
+        return redirect()->route('admin.user')->with('success', 'User berhasil diperbarui.');
     }
 
     // hapus
@@ -99,7 +99,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->firstOrFail();
         $user->delete();
-        return redirect()->route('user')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('admin.user')->with('success', 'User berhasil dihapus.');
     }
 
 }

@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             PengalamanSeeder::class,
             TujuanLatihanSeeder::class,
             AktivitasFisikSeeder::class,
+            KondisiTubuhSeeder::class,
+            RuleSeeder::class,
+            
         ]);    
     }
 }

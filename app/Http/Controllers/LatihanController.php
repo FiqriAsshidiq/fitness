@@ -10,12 +10,12 @@ class LatihanController extends Controller
     public function index()
     {
         $latihan = Latihan::all();
-        return view('latihan.index', compact('latihan'));
+        return view('admin.latihan.index', compact('latihan'));
     }
 
     public function create()
     {
-        return view('latihan.create');
+        return view('admin.latihan.create');
     }
 
     public function store(Request $request)
@@ -29,13 +29,13 @@ class LatihanController extends Controller
 
         Latihan::create($request->only('kode', 'nama_teknik', 'alat', 'kategori_otot'));
 
-        return redirect()->route('latihan')->with('success', 'Teknik latihan berhasil ditambahkan.');
+        return redirect()->route('admin.latihan')->with('success', 'Teknik latihan berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         $latihan = Latihan::findOrFail($id);
-        return view('latihan.edit', compact('latihan'));
+        return view('admin.latihan.edit', compact('latihan'));
     }
 
     public function update(Request $request, $id)
@@ -51,7 +51,7 @@ class LatihanController extends Controller
 
         $latihan->update($request->only('kode', 'nama_teknik', 'alat', 'kategori_otot'));
 
-        return redirect()->route('latihan')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.latihan')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class LatihanController extends Controller
         $latihan = Latihan::findOrFail($id);
         $latihan->delete();
 
-        return redirect()->route('latihan')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('admin.latihan')->with('success', 'Data berhasil dihapus.');
     }
 }
