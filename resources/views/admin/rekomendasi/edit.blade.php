@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight" style="font-size: 40px;">
-            {{ __('Edit Rekomendasi') }}
+            {{ ('Edit Rekomendasi') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 rounded shadow-sm">
-                <form action="{{ route('trainer.rekomendasi.update', $rekomendasi->id) }}" method="POST">
+                <form action="{{ route('admin.rekomendasi.update', $rekomendasi->id) }}" method="POST">
                     @csrf @method('PUT')
 
                     <div class="mb-3">
@@ -54,7 +54,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{{ route('trainer.rekomendasi') }}" class="btn btn-secondary">Batal</a>
+                    <a href="{{ route('admin.rekomendasi') }}" class="btn btn-secondary">Batal</a>
                 </form>
             </div>
         </div>
