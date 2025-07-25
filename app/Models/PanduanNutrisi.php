@@ -14,8 +14,10 @@ class PanduanNutrisi extends Model
     protected $fillable = [
         'nama_makanan',
         'kategori',
-        'kalori',
+        'energi',
         'protein',
+        'lemak',
+        'serat',
         'gambar_url',
     ];
 }

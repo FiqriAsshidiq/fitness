@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_makanan');
             $table->string('kategori');
-            $table->float('kalori')->nullable();
+            $table->float('energi')->nullable();
             $table->float('protein')->nullable();
+            $table->float('lemak')->nullable();
+            $table->float('serat')->nullable();
             $table->string('gambar_url')->nullable(); 
             $table->timestamps();       
         });

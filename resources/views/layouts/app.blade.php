@@ -27,7 +27,7 @@
             }
 
             .nav-pills li:hover a {
-                background-color: #0ea4e9 !important; /* Warna latar saat hover */
+                background-color: #e90e0e !important; /* Warna latar saat hover */
                 color: white !important; /* Warna teks saat hover */
             }
             body {
@@ -53,94 +53,92 @@
                     </a>
                 </div>
                 <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <!-- Dashboard -->
-                    <li>
-                        <a href="{{ route('dashboard') }}" class="nav-link text-white">
-                            <i class="fas fa-home me-2"></i> Dashboard
-                        </a>
-                    </li>
-                
-                    <!-- Admin -->
-                    @if (auth()->user()->role_id === 1)
-                    <li>
-                        <a href="{{ route('admin.user') }}" class="nav-link text-white">
-                            <i class="fas fa-users me-2"></i> Manajemen User
-                        </a>
-                    </li>
-                     <li>
-                        <a href="{{ route('admin.latihan') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> Latihan
-                        </a>
-                    </li>
-                     <li>
-                        <a href="{{ route('admin.kondisi_tubuh') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> Kondisi
-                        </a>
-                    </li>
-                     <li>
-                        <a href="{{ route('admin.aktivitasfisik.index') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> aktivitasfisik
-                        </a>
-                    </li>
-                     <li>
-                        <a href="{{ route('admin.gerakan') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> Gerakan
-                        </a>
-                    </li>
-                    <li>
-                    <a href="{{ route('admin.nutrisi') }}" class="nav-link text-white">
-                        <i class="fas fa-dumbbell me-2"></i> Nutrisi
-                    </a>
-                    </li>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <!-- Dashboard -->
+                        <li>
+                            <a href="{{ route('dashboard') }}" class="nav-link text-white">
+                                <i class="fas fa-home me-2"></i> Dashboard
+                            </a>
+                        </li>
 
-                    <li>
-                    <a href="{{ route('admin.saran.index') }}" class="nav-link text-white">
-                        <i class="fas fa-dumbbell me-2"></i> Nutrisi
-                    </a>
-                    </li>
-                    
-                    <li>
-                        <a href="{{ route('admin.rekomendasi') }}" class="nav-link text-white">
-                            <i class="fas fa-lightbulb me-2"></i> Rekomendasi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.rule') }}" class="nav-link text-white">
-                            <i class="fas fa-cogs me-2"></i> Aturan (Rule)
-                        </a>
-                    </li>
-                    @endif
-                
-                    <!-- Member -->
-                    @if (auth()->user()->role_id === 3)
-                    <li>
-                        <a href="{{ route('member.konsultasi') }}" class="nav-link text-white">
-                            <i class="fas fa-comments me-2"></i> Konsultasi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('member.hasil.saya') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> Hasil Rekomendasi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('member.gerakan') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> gerakan
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('member.nutrisi') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> Nutrisi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('member.saran.create') }}" class="nav-link text-white">
-                            <i class="fas fa-dumbbell me-2"></i> Saran
-                        </a>
-                    </li>
-                    @endif
-                </ul>                          
+                        <!-- Admin -->
+                        @if (auth()->user()->role_id === 1)
+                            <li>
+                                <a href="{{ route('admin.user') }}" class="nav-link text-white">
+                                    <i class="fas fa-users-cog me-2"></i> Manajemen User
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.latihan') }}" class="nav-link text-white">
+                                    <i class="fas fa-dumbbell me-2"></i> Latihan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.kondisi_tubuh') }}" class="nav-link text-white">
+                                    <i class="fas fa-heartbeat me-2"></i> Kondisi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.aktivitasfisik.index') }}" class="nav-link text-white">
+                                    <i class="fas fa-running me-2"></i> Aktivitas Fisik
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.gerakan') }}" class="nav-link text-white">
+                                    <i class="fas fa-person-walking me-2"></i> Gerakan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.nutrisi') }}" class="nav-link text-white">
+                                    <i class="fas fa-apple-alt me-2"></i> Nutrisi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.saran.index') }}" class="nav-link text-white">
+                                    <i class="fas fa-notes-medical me-2"></i> Saran
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.rekomendasi') }}" class="nav-link text-white">
+                                    <i class="fas fa-lightbulb me-2"></i> Rekomendasi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.rule') }}" class="nav-link text-white">
+                                    <i class="fas fa-cogs me-2"></i> Aturan (Rule)
+                                </a>
+                            </li>
+                        @endif
+
+                        <!-- Member -->
+                        @if (auth()->user()->role_id === 3)
+                            <li>
+                                <a href="{{ route('member.konsultasi') }}" class="nav-link text-white">
+                                    <i class="fas fa-comments me-2"></i> Konsultasi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('member.hasil.saya') }}" class="nav-link text-white">
+                                    <i class="fas fa-chart-line me-2"></i> Hasil Rekomendasi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('member.gerakan') }}" class="nav-link text-white">
+                                    <i class="fas fa-person-walking me-2"></i> Gerakan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('member.nutrisi') }}" class="nav-link text-white">
+                                    <i class="fas fa-apple-alt me-2"></i> Nutrisi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('member.saran.create') }}" class="nav-link text-white">
+                                    <i class="fas fa-notes-medical me-2"></i> Saran
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
                 <hr>
                 <!-- Dropdown User Menu -->
                 <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

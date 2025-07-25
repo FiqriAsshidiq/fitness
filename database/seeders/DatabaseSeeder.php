@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             AktivitasFisikSeeder::class,
             KondisiTubuhSeeder::class,
             RuleSeeder::class,
-            
+            PanduanGerakanSeeder::class,
+            PanduanNutrisiSeeder::class,            
         ]);    
     }
 }

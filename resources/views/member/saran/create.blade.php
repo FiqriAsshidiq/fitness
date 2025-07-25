@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-bold text-white leading-tight text-center">Kirim Saran</h2>
+        <h2 class="font-semibold text-xl text-white leading-tight text-center" style="font-size: 40px;"
+        >Kirim Saran</h2>
     </x-slot>
 
     <div class="py-10">

@@ -25,8 +25,10 @@
                         <tr>
                             <th class="text-center">Nama Makanan</th>
                             <th class="text-center">Kategori</th>
-                            <th class="text-center">Kalori</th>
-                            <th class="text-center">Protein</th>
+                            <th class="text-center">Energi (kkal)</th>
+                            <th class="text-center">Protein (g)</th>
+                            <th class="text-center">Lemak (g)</th>
+                            <th class="text-center">Serat (g)</th>
                             <th class="text-center">Gambar</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -36,8 +38,10 @@
                         <tr>
                             <td class="text-center">{{ $item->nama_makanan }}</td>
                             <td class="text-center">{{ $item->kategori }}</td>
-                            <td class="text-center">{{ $item->kalori ?? '-' }}</td>
+                            <td class="text-center">{{ $item->energi ?? '-' }}</td>
                             <td class="text-center">{{ $item->protein ?? '-' }}</td>
+                            <td class="text-center">{{ $item->lemak ?? '-' }}</td>
+                            <td class="text-center">{{ $item->serat ?? '-' }}</td>
                             <td class="text-center">
                                 @if($item->gambar_url)
                                     <img src="{{ asset('storage/' . $item->gambar_url) }}" alt="Gambar Makanan" width="100">

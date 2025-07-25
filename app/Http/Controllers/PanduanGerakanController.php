@@ -14,10 +14,28 @@ class PanduanGerakanController extends Controller
         return view('admin.panduan.gerakan.index', compact('gerakan'));
     }
 
-    public function showToMember()
-    {
-        $gerakan = PanduanGerakan::all();
-        return view('member.gerakan.index', compact('gerakan'));
+public function showToMember(Request $request)
+{
+    // Ambil semua kategori unik dari target otot
+    $kategori = PanduanGerakan::pluck('target_otot')->unique();
+
+    // Bangun query
+    $query = PanduanGerakan::query();
+
+    // Filter berdasarkan nama gerakan
+    if ($request->filled('search')) {
+        $query->where('nama_gerakan', 'like', '%' . $request->search . '%');
+    }
+
+    // Filter berdasarkan kategori otot
+    if ($request->filled('kategori')) {
+        $query->where('target_otot', $request->kategori);
+    }
+
+    // Ambil hasil
+    $gerakan = $query->orderBy('target_otot')->get();
+
+    return view('member.gerakan.index', compact('gerakan', 'kategori'));
     }
 
     public function create()

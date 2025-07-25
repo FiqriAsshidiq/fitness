@@ -14,10 +14,24 @@ class PanduanNutrisiController extends Controller
         return view('admin.panduan.nutrisi.index', compact('nutrisi'));
     }
 
-    public function showToMember()
+    public function showToMember(Request $request)
     {
-        $nutrisi = PanduanNutrisi::all();
-        return view('member.nutrisi.index', compact('nutrisi'));
+        $query = PanduanNutrisi::query();
+
+        // Pencarian nama makanan
+        if ($request->filled('search')) {
+            $query->where('nama_makanan', 'like', '%' . $request->search . '%');
+        }
+
+        // Filter kategori
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        $nutrisi = $query->get();
+        $daftarKategori = PanduanNutrisi::select('kategori')->distinct()->pluck('kategori');
+
+        return view('member.nutrisi.index', compact('nutrisi', 'daftarKategori'));
     }
 
     public function create()
@@ -30,8 +44,10 @@ class PanduanNutrisiController extends Controller
         $request->validate([
             'nama_makanan' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'kalori' => 'required|numeric|min:0',
-            'protein' => 'nullable|numeric|min:0',
+            'energi' => 'required|numeric|min:0',
+            'protein' => 'required|numeric|min:0',
+            'lemak' => 'required|numeric|min:0',
+            'serat' => 'nullable|numeric|min:0',
             'gambar_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -43,8 +59,10 @@ class PanduanNutrisiController extends Controller
         PanduanNutrisi::create([
             'nama_makanan' => $request->nama_makanan,
             'kategori' => $request->kategori,
-            'kalori' => $request->kalori,
+            'energi' => $request->energi,
             'protein' => $request->protein,
+            'lemak' => $request->lemak,
+            'serat' => $request->serat,
             'gambar_url' => $filePath,
         ]);
 
@@ -64,8 +82,10 @@ class PanduanNutrisiController extends Controller
         $request->validate([
             'nama_makanan' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'kalori' => 'required|numeric|min:0',
-            'protein' => 'nullable|numeric|min:0',
+            'energi' => 'required|numeric|min:0',
+            'protein' => 'required|numeric|min:0',
+            'lemak' => 'required|numeric|min:0',
+            'serat' => 'nullable|numeric|min:0',
             'gambar_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -79,8 +99,10 @@ class PanduanNutrisiController extends Controller
         $panduan_nutrisi->update([
             'nama_makanan' => $request->nama_makanan,
             'kategori' => $request->kategori,
-            'kalori' => $request->kalori,
+            'energi' => $request->energi,
             'protein' => $request->protein,
+            'lemak' => $request->lemak,
+            'serat' => $request->serat,
             'gambar_url' => $panduan_nutrisi->gambar_url,
         ]);
 

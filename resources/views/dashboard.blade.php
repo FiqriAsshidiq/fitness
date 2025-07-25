@@ -1,39 +1,42 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-black leading-tight" style="font-size: 40px;">
+        <h2 class="font-semibold text-xl text-white leading-tight" style="font-size: 40px;">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
+    
     <br>
-    <div class="container mx-auto p-6">
+     <img src="{{ asset('logologin.png') }}" alt="POS System" class="mx-auto w-25 h-25 object-contain">
+
+    <div class="container mx-auto">
         <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-blue-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Total Admin</h2>
-                <p class="text-3xl">{{ $totalAdmin }}</p>
+            <div class="bg-red-600 rounded-lg p-4 shadow">
+                <h2 class="text-xl font-semibold text-white">Total Admin</h2>
+                <p class="text-3xl text-white">{{ $totalAdmin }}</p>
             </div>
-            <div class="bg-green-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Total Trainer</h2>
-                <p class="text-3xl">{{ $totalTrainer }}</p>
+            <div class="bg-red-600 rounded-lg p-4 shadow">
+                <h2 class="text-xl font-semibold text-white">Total Trainer</h2>
+                <p class="text-xl font-semibold text-white">{{ $totalTrainer }}</p>
             </div>
-            <div class="bg-yellow-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Total Member</h2>
-                <p class="text-3xl">{{ $totalMember }}</p>
+            <div class="bg-red-600 rounded-lg p-4 shadow">
+                <h2 class="text-xl font-semibold text-white">Total Member</h2>
+                <p class="text-xl font-semibold text-white">{{ $totalMember }}</p>
             </div>
         </div>
         
         <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            <div class="bg-purple-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Total Latihan</h2>
-                <p class="text-3xl">{{ $totalLatihan }}</p>
+            <div class="bg-red-600 rounded-lg p-4 shadow">
+                <h2 class="text-xl font-semibold text-white">Total Latihan</h2>
+                <p class="text-xl font-semibold text-white">{{ $totalLatihan }}</p>
             </div>
-            <div class="bg-pink-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Total Rule</h2>
-                <p class="text-3xl">{{ $totalRule }}</p>
+            <div class="bg-red-600 rounded-lg p-4 shadow">
+                <h2 class="text-xl font-semibold text-white">Total Rule</h2>
+                <p class="text-xl font-semibold text-white">{{ $totalRule }}</p>
             </div>
-            <div class="bg-red-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Total Rekomendasi</h2>
-                <p class="text-3xl">{{ $totalRekomendasi }}</p>
+            <div class="bg-red-600 rounded-lg p-4 shadow">
+                <h2 class="text-xl font-semibold text-white">Total Rekomendasi</h2>
+                <p class="text-xl font-semibold text-white">{{ $totalRekomendasi }}</p>
             </div>
         </div>
             </div>
