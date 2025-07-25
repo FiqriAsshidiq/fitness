@@ -43,7 +43,7 @@
                             <th class="px-4 py-2 border">Target Otot</th>
                             <td class="px-4 py-2 border">
                                 @foreach($konsultasi->targetOtot as $otot)
-                                    <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1">{{ $otot->fokus }}</span>
+                                    <span class="inline-block  px-2 py-1 rounded mr-1">{{ $otot->fokus }}</span>
                                 @endforeach
                             </td>
                         </tr>
@@ -71,8 +71,12 @@
                             <td class="px-4 py-2 border">{{ $konsultasi->rekomendasi->metode_latihan }}</td>
                         </tr>
                         <tr>
-                            <th class="px-4 py-2 border">Keterangan</th>
-                            <td class="px-4 py-2 border">{{ $konsultasi->rekomendasi->keterangan }}</td>
+                            <th class="px-4 py-2 border">Nutrisi</th>
+                            <td class="px-4 py-2 border">{{ $konsultasi->rekomendasi->nutrisi ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th class="px-4 py-2 border">Catatan</th>
+                            <td class="px-4 py-2 border">{{ $konsultasi->rekomendasi->catatan ?? '-' }}</td>
                         </tr>
                     </tbody>
                 </table>
