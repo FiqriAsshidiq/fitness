@@ -24,7 +24,6 @@
 
       <!-- Menu links (hidden on mobile) -->
       <div id="nav-links" class="hidden md:flex space-x-4">
-        <a href="#home" class="hover:text-gray-200">Home</a>
         <a href="#about" class="hover:text-gray-200">About</a>
         <a href="#fasilitas" class="hover:text-gray-200">Fasilitas</a>
         <a href="#fitur" class="hover:text-gray-200">Fitur</a>
@@ -62,9 +61,6 @@
       <h2 class="text-4xl md:text-5xl font-bold leading-tight">
         Build Perfect Body <br>With Clean Mind
       </h2>
-      <p class="text-gray-300 leading-relaxed">
-        Sistem pakar untuk membantu kamu memilih latihan berdasarkan tujuan dan pengalamanmu.
-      </p>
       <a href="{{ route('login') }}" class="bg-red-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 inline-block w-max">
         Mulai Sekarang
       </a>

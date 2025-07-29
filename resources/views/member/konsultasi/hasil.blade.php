@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 rounded-lg shadow">
 
                 @if($konsultasi && $konsultasi->rekomendasi)
@@ -17,15 +17,15 @@
                     <tbody>
                         <tr>
                             <th class="px-4 py-2 border w-1/3">Jenis Kelamin</th>
-                            <td class="px-4 py-2 border">{{ ucfirst($konsultasi->jenis_kelamin) }}</td>
+                            <td class="px-4 py-2 border">{{ Auth::user()->jenis_kelamin }}</td>
                         </tr>
                         <tr>
                             <th class="px-4 py-2 border">Usia</th>
-                            <td class="px-4 py-2 border">{{ $konsultasi->usia }} tahun</td>
+                            <td class="px-4 py-2 border">{{ Auth::user()->usia }} tahun</td>
                         </tr>
                         <tr>
                             <th class="px-4 py-2 border">Tinggi / Berat</th>
-                            <td class="px-4 py-2 border">{{ $konsultasi->tinggi_badan }} cm / {{ $konsultasi->berat_badan }} kg</td>
+                            <td class="px-4 py-2 border">{{ Auth::user()->tinggi_badan }} cm / {{ Auth::user()->berat_badan }} kg</td>
                         </tr>
                         <tr>
                             <th class="px-4 py-2 border">Aktivitas Fisik</th>
@@ -59,7 +59,7 @@
                 </table>
 
                 {{-- TABEL REKOMENDASI --}}
-                <h3 class="text-lg font-semibold mb-2 text-green-700">Rekomendasi Latihan</h3>
+                <h3 class="text-lg font-semibold mb-2">Rekomendasi </h3>
                 <table class="table-auto w-full mb-6 text-left border border-gray-200">
                     <tbody>
                         <tr>
@@ -82,14 +82,30 @@
                 </table>
 
                 <div class="mt-4">
-                    <h5>Kebutuhan Nutrisi Harian</h5>
-                    <p><strong>Kalori:</strong> {{ $konsultasi->kalori }} kcal/hari</p>
-                    <p><strong>Protein:</strong> {{ $konsultasi->protein }} gram/hari</p>
+                    <h5 class="text-lg font-semibold mb-2">Kebutuhan Nutrisi Harian</h5>
+                    <table class="min-w-full border border-gray-300 rounded">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-2 text-left border-b">Nutrisi</th>
+                                <th class="px-4 py-2 text-left border-b">Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2 border-b">Kalori</td>
+                                <td class="px-4 py-2 border-b">{{ $konsultasi->kalori }} kcal/hari</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">Protein</td>
+                                <td class="px-4 py-2">{{ $konsultasi->protein }} gram/hari</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
 
                 {{-- TEKNIK LATIHAN --}}
-                <h4 class="text-md font-semibold mb-2 text-purple-700">Teknik Latihan:</h4>
+                <h5 class="text-lg font-semibold mb-2 ">Teknik Latihan</h5>
                 @if($konsultasi->rekomendasi->latihan->count() > 0)
                     <table class="table-auto w-full border border-gray-300 mb-6">
                         <thead class="bg-gray-100">
@@ -113,30 +129,30 @@
                     <p class="text-gray-600 mb-6">Belum ada teknik latihan terhubung.</p>
                 @endif
 
-<!-- Jadwal Mingguan -->
-<div class="card mt-4">
-    <div class="card-header bg-primary text-white">
-        <h5 class="mb-0">Jadwal Latihan Mingguan</h5>
-    </div>
-    <div class="card-body">
-        @if(count($jadwal) > 0)
-            @foreach ($jadwal as $hari => $latihans)
-                <h6 class="mt-3 font-semibold text-blue-700">{{ $hari }}</h6>
-                @if(count($latihans) > 0)
-                    <ul class="list-disc ml-6 text-sm">
-                        @foreach ($latihans as $latihan)
-                            <li>{{ $latihan->nama_teknik ?? $latihan->nama }} ({{ ucfirst($latihan->kategori_otot) ?? '-' }})</li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-gray-600">Tidak ada latihan untuk hari ini.</p>
-                @endif
-            @endforeach
-        @else
-            <p class="text-red-600">Tidak ada jadwal latihan yang tersedia.</p>
-        @endif
-    </div>
-</div>
+                <!-- Jadwal Mingguan -->
+                <div class="card mt-4">
+                    <div class="card-header ">
+                        <h5 class="mb-0">Jadwal Latihan Mingguan</h5>
+                    </div>
+                    <div class="card-body">
+                        @if(count($jadwal) > 0)
+                            @foreach ($jadwal as $hari => $latihans)
+                                <h6 class="mt-3 font-semibold text-blue-700">{{ $hari }}</h6>
+                                @if(count($latihans) > 0)
+                                    <ul class="list-disc ml-6 text-sm">
+                                        @foreach ($latihans as $latihan)
+                                            <li>{{ $latihan->nama_teknik ?? $latihan->nama }} ({{ ucfirst($latihan->kategori_otot) ?? '-' }})</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p class="text-gray-600">Tidak ada latihan untuk hari ini.</p>
+                                @endif
+                            @endforeach
+                        @else
+                            <p class="text-red-600">Tidak ada jadwal latihan yang tersedia.</p>
+                        @endif
+                    </div>
+                </div>
 
                 @else
                     <div class="text-red-700 bg-yellow-100 p-4 rounded border border-yellow-300">

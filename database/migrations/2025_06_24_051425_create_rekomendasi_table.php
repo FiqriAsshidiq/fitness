@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('rule_id');
             $table->string('kode');
             $table->string('metode_latihan');
-            $table->string('nutrisi');
-            $table->string('catatan');
+            $table->text('nutrisi');
+            $table->text('catatan');
             $table->timestamps();
         
             $table->foreign('rule_id')->references('id')->on('rules')->onDelete('cascade');

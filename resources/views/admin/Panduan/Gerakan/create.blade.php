@@ -14,7 +14,7 @@
 
                     <div class="mb-4">
                         <label class="block font-semibold">Nama Gerakan</label>
-                        <input type="text" name="nama_gerakan" class="form-control w-full border rounded px-3 py-2" required>
+                         <input type="text" name="nama_makanan" class="form-control w-full border rounded px-3 py-2" required>
                     </div>
 
                     <div class="mb-4">

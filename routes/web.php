@@ -15,6 +15,10 @@ use App\Http\Controllers\PanduanGerakanController;
 use App\Http\Controllers\PanduanNutrisiController;
 use App\Http\Controllers\AktivitasFisikController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\TargetOtotController;
+use App\Http\Controllers\TingkatPengalamanController;
+use App\Http\Controllers\TujuannController;
+
 
 
 
@@ -35,8 +39,7 @@ Route::middleware('auth')->group(function () {
 
     // User (Admin)
     Route::get('/user', [UserController::class, 'index'])->name('admin.user');
-    Route::get('/user/create', [UserController::class, 'create'])->name('admin.user.create');
-    Route::post('/user', [UserController::class, 'store'])->name('admin.user.store');
+    Route::put('/admin/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('admin.user.resetPassword');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
     Route::put('/user/{id}', [UserController::class, 'update'])->name('admin.user.update');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
@@ -82,7 +85,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/nutrisi', [PanduanNutrisiController::class, 'showToMember'])->name('member.nutrisi');
 
     // Konsultasi (Member)
-
     Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('member.konsultasi');
     Route::post('/konsultasi/proses', [KonsultasiController::class, 'proses'])->name('member.konsultasi.proses');
     Route::get('/konsultasi/hasil/{id}', [KonsultasiController::class, 'hasil'])->name('member.konsultasi.hasil');
@@ -97,6 +99,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/latihan/{id}/edit', [LatihanController::class, 'edit'])->name('admin.latihan.edit');
     Route::put('/latihan/{id}', [LatihanController::class, 'update'])->name('admin.latihan.update');
     Route::delete('/latihan/{id}', [LatihanController::class, 'destroy'])->name('admin.latihan.destroy');
+ 
+    // Admin (Tujuan)
+
+    Route::get('/tujuan', [TujuannController::class, 'index'])->name('admin.tujuan');
+    Route::get('/tujuan/create', [TujuannController::class, 'create'])->name('admin.tujuan.create');
+    Route::post('/tujuan', [TujuannController::class, 'store'])->name('admin.tujuan.store');
+    Route::get('/tujuan/{id}/edit', [TujuannController::class, 'edit'])->name('admin.tujuan.edit');
+    Route::put('/tujuan/{id}', [TujuannController::class, 'update'])->name('admin.tujuan.update');
+    Route::delete('/tujuan/{id}', [TujuannController::class, 'destroy'])->name('admin.tujuan.destroy');
+
+    //Admin (Pengalaman)
+    Route::get('/pengalaman', [TingkatPengalamanController::class, 'index'])->name('admin.pengalaman');
+    Route::get('/pengalaman/create', [TingkatPengalamanController::class, 'create'])->name('admin.pengalaman.create');
+    Route::post('/pengalaman', [TingkatPengalamanController::class, 'store'])->name('admin.pengalaman.store');
+    Route::get('/pengalaman/{id}/edit', [TingkatPengalamanController::class, 'edit'])->name('admin.pengalaman.edit');
+    Route::put('/pengalaman/{id}', [TingkatPengalamanController::class, 'update'])->name('admin.pengalaman.update');
+    Route::delete('/pengalaman/{id}', [TingkatPengalamanController::class, 'destroy'])->name('admin.pengalaman.destroy');
+
+    // Target Otot (admin)
+    Route::get('/otot', [TargetOtotController::class, 'index'])->name('admin.otot');
+    Route::get('/otot/create', [TargetOtotController::class, 'create'])->name('admin.otot.create');
+    Route::post('/otot', [TargetOtotController::class, 'store'])->name('admin.otot.store');
+    Route::get('/otot/{id}/edit', [TargetOtotController::class, 'edit'])->name('admin.otot.edit');
+    Route::put('/otot/{id}', [TargetOtotController::class, 'update'])->name('admin.otot.update');
+    Route::delete('/otot/{id}', [TargetOtotController::class, 'destroy'])->name('admin.otot.destroy');
     
 
     // Aktivitas Fisik (Admin)

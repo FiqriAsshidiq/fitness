@@ -27,11 +27,8 @@
                     @endif
 
                     <br>
-
-
-                <x-primary-button class="justify-center w-full sm:w-auto " onclick="window.location='{{ route('admin.user.create') }}'">Tambah Akun</x-primary-button>
-                <br>
-                <br>
+                    <br>
+                    <br>
 
                     <!-- Tabel Data Users -->
                     <x-table>
@@ -41,8 +38,11 @@
                                 <th class="text-center">Nama</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Telphone</th>
+                                <th class="text-center">Usia</th>
+                                <th class="text-center">Tinggi Badan</th>
+                                <th class="text-center">Berat Badan</th>
+                                <th class="text-center">Foto Member</th>
                                 <th class="text-center">Aksi</th>
-
                             </tr>
                         </x-slot>
                         @php $num = 1; @endphp
@@ -51,7 +51,11 @@
                                 <td class="text-center">{{ $num++ }}</td>
                                 <td class="text-center">{{ $user->name }}</td>
                                 <td class="text-center">{{ $user->email }}</td>
-                                <td class="text-center">{{ $user->Telphone }}</td>
+                                <td class="text-center">{{ $user->telphone }}</td>
+                                <td class="text-center">{{ $user->usia }}</td>
+                                <td class="text-center">{{ $user->tinggi_badan }}</td>
+                                <td class="text-center">{{ $user->berat_badan }}</td>
+                                <td class="text-center">{{ $user->foto_member }}</td>
                                 <td class=" text-center">
                                     <x-primary-button 
                                         x-data=""

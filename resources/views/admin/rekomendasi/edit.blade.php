@@ -49,8 +49,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label">Keterangan</label>
-                        <textarea name="keterangan" class="form-control">{{ $rekomendasi->keterangan }}</textarea>
+                        <label for="nutrisi" class="form-label">Nutrisi</label>
+                        <textarea name="nutrisi" class="form-control">{{ old('nutrisi') }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="catatan" class="form-label">Catatan</label>
+                        <textarea name="catatan" class="form-control">{{ old('catatan') }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update</button>

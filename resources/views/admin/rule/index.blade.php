@@ -42,7 +42,7 @@
                             <td class="text-center">{{ $rule->tujuanLatihan->nama ?? '-' }}</td>
                             <td class="text-center">
                                 @foreach ($rule->targetOtot as $otot)
-                                    <span class="inline-block bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded mb-1">
+                                    <span>
                                         {{ $otot->kode }} - {{ $otot->fokus }}
                                     </span><br>
                                 @endforeach

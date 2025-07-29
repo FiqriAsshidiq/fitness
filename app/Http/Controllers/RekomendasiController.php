@@ -28,9 +28,9 @@ public function store(Request $request)
         'rule_id' => 'required|exists:rules,id',
         'kode' => 'required|string|max:255',
         'metode_latihan' => 'required|string|max:255',
-        'nutrisi' => 'required|string|max:255',
-        'catatan' => 'required|string|max:255',
-        'latihan_id' => 'array' // tambahkan validasi untuk latihan
+        'nutrisi' => 'required|string',
+        'catatan' => 'required|string',
+        'latihan_id' => 'array'
     ]);
 
     $rekomendasi = Rekomendasi::create([
@@ -41,7 +41,6 @@ public function store(Request $request)
         'catatan' => $request->catatan,
     ]);
 
-    // Simpan relasi latihan ke tabel pivot
     if ($request->has('latihan_id')) {
         $rekomendasi->latihan()->attach($request->latihan_id);
     }
@@ -57,33 +56,31 @@ public function store(Request $request)
         return view('admin.rekomendasi.edit', compact('rekomendasi', 'rules', 'latihan'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $rekomendasi = Rekomendasi::findOrFail($id);
+public function update(Request $request, $id)
+{
+    $rekomendasi = Rekomendasi::findOrFail($id);
 
-        $request->validate([
-            'rule_id' => 'required|exists:rules,id',
-            'kode' => 'required|unique:rekomendasi,kode,' . $id,
-            'metode_latihan' => 'nullable',
-            'keterangan' => 'nullable',
-            'Nutrisi' => 'nullable',
-            'Catatan' => 'nullable',
-            'latihan_id' => 'array'
-        ]);
+    $request->validate([
+        'rule_id' => 'required|exists:rules,id',
+        'kode' => 'required|unique:rekomendasi,kode,' . $id,
+        'metode_latihan' => 'nullable|string',
+        'nutrisi' => 'nullable|string',
+        'catatan' => 'nullable|string',
+        'latihan_id' => 'array'
+    ]);
 
-        $rekomendasi->update([
-            'rule_id' => $request->rule_id,
-            'kode' => $request->kode,
-            'metode_latihan' => $request->metode_latihan,
-            'keterangan' => $request->keterangan,
-            'Nutrisi' => $request->catatan,
-            'Catatan' => $request->nutrisi,
-        ]);
+    $rekomendasi->update([
+        'rule_id' => $request->rule_id,
+        'kode' => $request->kode,
+        'metode_latihan' => $request->metode_latihan,
+        'nutrisi' => $request->nutrisi,
+        'catatan' => $request->catatan,
+    ]);
 
-        $rekomendasi->latihan()->sync($request->latihan_id ?? []);
+    $rekomendasi->latihan()->sync($request->latihan_id ?? []);
 
-        return redirect()->route('admin.rekomendasi')->with('success', 'Rekomendasi berhasil diperbarui.');
-    }
+    return redirect()->route('admin.rekomendasi')->with('success', 'Rekomendasi berhasil diperbarui.');
+}
 
     public function destroy($id)
     {

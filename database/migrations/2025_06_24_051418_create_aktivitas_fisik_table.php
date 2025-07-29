@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('aktivitas_fisik', function (Blueprint $table) {
             $table->id();
-            $table->string('tingkat'); // contoh: Sedentary, Aktif, Sangat Aktif
+            $table->string('tingkat');
             $table->decimal('nilai', 3, 2); // contoh: 1.2, 1.375, dst
             $table->timestamps();        
         });

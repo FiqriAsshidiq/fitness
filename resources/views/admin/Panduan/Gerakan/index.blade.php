@@ -35,7 +35,7 @@
                         <tr>
                             <td class="text-center">{{ $item->nama_gerakan }}</td>
                             <td class="text-center">{{ $item->target_otot }}</td>
-                            <td class="">{{ $item->deskripsi }}</td>
+                            <td style="white-space: normal; max-width: 200px; vertical-align: top;">{{ $item->deskripsi }}</td>
                             <td class="text-center">
                                 @if($item->gif_url)
                                     <img src="{{ asset('storage/' . $item->gif_url) }}" alt="GIF" width="100">

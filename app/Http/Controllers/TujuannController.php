@@ -3,62 +3,67 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TujuanLatihan;
 
 class TujuannController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $tujuan = TujuanLatihan::all();
+        return view('admin.tujuan.index', compact('tujuan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.tujuan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required|unique:tujuan_latihan,kode|max:10',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+        ]);
+
+        TujuanLatihan::create([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('admin.tujuan')->with('success', 'Tujuan berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $tujuan = TujuanLatihan::findOrFail($id);
+        return view('admin.tujuan.edit', compact('tujuan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'kode' => 'required|unique:tujuan_latihan,kode,' . $id . '|max:10',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+        ]);
+
+        $tujuan = TujuanLatihan::findOrFail($id);
+        $tujuan->update([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('admin.tujuan')->with('success', 'Tujuan berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $tujuan = TujuanLatihan::findOrFail($id);
+        $tujuan->delete();
+
+        return redirect()->route('admin.tujuan')->with('success', 'Tujuan berhasil dihapus');
     }
 }

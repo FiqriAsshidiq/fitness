@@ -71,13 +71,13 @@ class PanduanNutrisiController extends Controller
 
     public function edit($id)
     {
-        $panduan_nutrisi = PanduanNutrisi::findOrFail($id);
-        return view('admin.panduan.nutrisi.edit', compact('panduan_nutrisi'));
+        $nutrisi = PanduanNutrisi::findOrFail($id);
+        return view('admin.panduan.nutrisi.edit', compact('nutrisi'));
     }
 
     public function update(Request $request, $id)
     {
-        $panduan_nutrisi = PanduanNutrisi::findOrFail($id);
+        $nutrisi = PanduanNutrisi::findOrFail($id);
 
         $request->validate([
             'nama_makanan' => 'required|string|max:255',
@@ -90,20 +90,20 @@ class PanduanNutrisiController extends Controller
         ]);
 
         if ($request->hasFile('gambar_url')) {
-            if ($panduan_nutrisi->gambar_url) {
-                Storage::disk('public')->delete($panduan_nutrisi->gambar_url);
+            if ($nutrisi->gambar_url) {
+                Storage::disk('public')->delete($nutrisi->gambar_url);
             }
-            $panduan_nutrisi->gambar_url = $request->file('gambar_url')->store('nutrisi', 'public');
+            $nutrisi->gambar_url = $request->file('gambar_url')->store('nutrisi', 'public');
         }
 
-        $panduan_nutrisi->update([
+        $nutrisi->update([
             'nama_makanan' => $request->nama_makanan,
             'kategori' => $request->kategori,
             'energi' => $request->energi,
             'protein' => $request->protein,
             'lemak' => $request->lemak,
             'serat' => $request->serat,
-            'gambar_url' => $panduan_nutrisi->gambar_url,
+            'gambar_url' => $nutrisi->gambar_url,
         ]);
 
         return redirect()->route('admin.nutrisi')->with('success', 'Nutrisi berhasil diperbarui.');

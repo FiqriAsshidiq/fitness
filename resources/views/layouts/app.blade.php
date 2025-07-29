@@ -65,17 +65,32 @@
                         @if (auth()->user()->role_id === 1)
                             <li>
                                 <a href="{{ route('admin.user') }}" class="nav-link text-white">
-                                    <i class="fas fa-users-cog me-2"></i> Manajemen User
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.latihan') }}" class="nav-link text-white">
-                                    <i class="fas fa-dumbbell me-2"></i> Latihan
+                                    <i class="fas fa-users-cog me-2"></i> Pengguna
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.kondisi_tubuh') }}" class="nav-link text-white">
-                                    <i class="fas fa-heartbeat me-2"></i> Kondisi
+                                    <i class="fas fa-heartbeat me-2"></i> Kondisi Tubuh
+                                </a>
+                            </li>
+                        <li>
+                            <a href="{{ route('admin.pengalaman') }}" class="nav-link text-white">
+                                <i class="fas fa-star me-2"></i> Pengalaman
+                            </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.tujuan') }}" class="nav-link text-white">
+                                    <i class="fas fa-bullseye me-2"></i> Tujuan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.otot') }}" class="nav-link text-white">
+                                    <i class="fas fa-hand-rock me-2"></i> Otot
+                                </a>
+                            </li>
+                             <li>
+                                <a href="{{ route('admin.latihan') }}" class="nav-link text-white">
+                                    <i class="fas fa-dumbbell me-2"></i> Latihan
                                 </a>
                             </li>
                             <li>
@@ -88,6 +103,16 @@
                                     <i class="fas fa-person-walking me-2"></i> Gerakan
                                 </a>
                             </li>
+                                                        <li>
+                                <a href="{{ route('admin.rekomendasi') }}" class="nav-link text-white">
+                                    <i class="fas fa-lightbulb me-2"></i> Rekomendasi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.rule') }}" class="nav-link text-white">
+                                    <i class="fas fa-cogs me-2"></i> Aturan (Rule)
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ route('admin.nutrisi') }}" class="nav-link text-white">
                                     <i class="fas fa-apple-alt me-2"></i> Nutrisi
@@ -98,16 +123,7 @@
                                     <i class="fas fa-notes-medical me-2"></i> Saran
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('admin.rekomendasi') }}" class="nav-link text-white">
-                                    <i class="fas fa-lightbulb me-2"></i> Rekomendasi
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.rule') }}" class="nav-link text-white">
-                                    <i class="fas fa-cogs me-2"></i> Aturan (Rule)
-                                </a>
-                            </li>
+
                         @endif
 
                         <!-- Member -->
