@@ -38,13 +38,6 @@ class KondisiTubuhController extends Controller
         return redirect()->route('admin.kondisi_tubuh')->with('success', 'Kondisi tubuh berhasil ditambahkan.');
     }
 
-    // Tampilkan detail data
-    public function show(string $id)
-    {
-        $kondisi = KondisiTubuh::findOrFail($id);
-        return view('kondisi_tubuh.show', compact('kondisi'));
-    }
-
     // Tampilkan form edit
     public function edit(string $id)
     {
