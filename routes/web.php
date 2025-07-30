@@ -28,6 +28,7 @@ Route::get('/', function () {
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/eror', [DashboardController::class, 'index'])->name('eror');
 
 // Semua route dengan proteksi auth
 Route::middleware('auth')->group(function () {
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // ================= ADMIN =================
+    Route::middleware('admin')->group(function () {
+            // admin
     // User (Admin)
     Route::get('/user', [UserController::class, 'index'])->name('admin.user');
     Route::put('/admin/user/reset-password/{id}', [UserController::class, 'resetPassword'])->name('admin.user.resetPassword');
@@ -46,12 +50,6 @@ Route::middleware('auth')->group(function () {
 
     // Saran (Admin)
     Route::get('/admin/saran', [SaranController::class, 'index'])->middleware('auth')->name('admin.saran.index');
-
-    // Saran (User)
-    Route::get('/saran', [SaranController::class, 'create'])->name('member.saran.create');
-    Route::post('/saran', [SaranController::class, 'store'])->name('member.saran.store');
-
-
 
     // kondisi (Admin)
     Route::get('/kondisi_tubuh', [KondisiTubuhController::class, 'index'])->name('admin.kondisi_tubuh');
@@ -69,10 +67,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/panduan/{panduan_gerakan}', [PanduanGerakanController::class, 'update'])->name('admin.gerakan.update');
     Route::delete('/panduan/{panduan_gerakan}', [PanduanGerakanController::class, 'destroy'])->name('admin.gerakan.destroy');
 
-    // gerakan(member)
-    Route::get('/member/gerakan', [PanduanGerakanController::class, 'showToMember'])->name('member.gerakan');
-
-
     // Rute Admin Panduan Nutrisi
     Route::get('/panduan-nutrisi', [PanduanNutrisiController::class, 'index'])->name('admin.nutrisi');
     Route::get('/panduan-nutrisi/create', [PanduanNutrisiController::class, 'create'])->name('admin.nutrisi.create');
@@ -80,17 +74,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/panduan-nutrisi/{id}/edit', [PanduanNutrisiController::class, 'edit'])->name('admin.nutrisi.edit');
     Route::put('/panduan-nutrisi/{id}', [PanduanNutrisiController::class, 'update'])->name('admin.nutrisi.update');
     Route::delete('/panduan-nutrisi/{id}', [PanduanNutrisiController::class, 'destroy'])->name('admin.nutrisi.destroy');
-
-    // nutrisi(member)
-    Route::get('/member/nutrisi', [PanduanNutrisiController::class, 'showToMember'])->name('member.nutrisi');
-
-    // Konsultasi (Member)
-    Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('member.konsultasi');
-    Route::post('/konsultasi/proses', [KonsultasiController::class, 'proses'])->name('member.konsultasi.proses');
-    Route::get('/konsultasi/hasil/{id}', [KonsultasiController::class, 'hasil'])->name('member.konsultasi.hasil');
-    Route::get('/hasil-saya', [HasilRekomendasiController::class, 'index'])->name('member.hasil.saya');
-
-
 
     // Latihan (admin)
     Route::get('/latihan', [LatihanController::class, 'index'])->name('admin.latihan');
@@ -150,8 +133,33 @@ Route::middleware('auth')->group(function () {
     Route::get('/rule/{id}/edit', [RuleController::class, 'edit'])->name('admin.rule.edit');
     Route::put('/rule/{id}', [RuleController::class, 'update'])->name('admin.rule.update');
     Route::delete('/rule/{id}', [RuleController::class, 'destroy'])->name('admin.rule.destroy');
+
+    });
+
+
     
-   
+    Route::middleware('member')->group(function () {
+
+            // member
+            // nutrisi(member)
+            Route::get('/member/nutrisi', [PanduanNutrisiController::class, 'showToMember'])->name('member.nutrisi');
+
+            // gerakan(member)
+            Route::get('/member/gerakan', [PanduanGerakanController::class, 'showToMember'])->name('member.gerakan');
+
+            // Saran (User)
+            Route::get('/saran', [SaranController::class, 'create'])->name('member.saran.create');
+            Route::post('/saran', [SaranController::class, 'store'])->name('member.saran.store');
+
+
+                // Konsultasi (Member)
+            Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('member.konsultasi');
+            Route::post('/konsultasi/proses', [KonsultasiController::class, 'proses'])->name('member.konsultasi.proses');
+            Route::get('/konsultasi/hasil/{id}', [KonsultasiController::class, 'hasil'])->name('member.konsultasi.hasil');
+            Route::get('/hasil-saya', [HasilRekomendasiController::class, 'index'])->name('member.hasil.saya');
+
+        });
+
 });
 
 // Logout
