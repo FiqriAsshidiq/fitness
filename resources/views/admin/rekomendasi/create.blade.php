@@ -10,13 +10,6 @@
             <div class="bg-white p-6 rounded shadow-sm">
                 <form action="{{ route('admin.rekomendasi.store') }}" method="POST">
                     @csrf
-
-                    <div class="mb-3">
-                        <label for="kode" class="form-label">Kode</label>
-                        <input type="text" name="kode" class="form-control" required value="{{ old('kode') }}">
-                        @error('kode') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-
                     <div class="mb-3">
                         <label for="rule_id" class="form-label">Pilih Aturan</label>
                         <select name="rule_id" class="form-control" required>
@@ -34,7 +27,7 @@
                                 <div class="col-md-4">
                                     <label>
                                         <input type="checkbox" name="latihan_id[]" value="{{ $item->id }}">
-                                        {{ $item->kode }} - {{ $item->nama_teknik }}
+                                        {{ $item->id }} - {{ $item->nama_teknik }}
                                     </label>
                                 </div>
                             @endforeach

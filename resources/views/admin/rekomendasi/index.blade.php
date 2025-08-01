@@ -18,7 +18,6 @@
                     <x-slot name="header">
                         <tr>
                             <th>No</th>
-                            <th>Kode</th>
                             <th>Rule ID</th>
                             <th>Metode Latihan</th>
                             <th>Latihan</th> {{-- Baru --}}
@@ -31,7 +30,6 @@
                     @foreach ($rekomendasi as $index => $item)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $item->kode }}</td>
                             <td>Rule #{{ $item->rule_id }}</td>
                             <td>{{ $item->metode_latihan }}</td>
                             <td>

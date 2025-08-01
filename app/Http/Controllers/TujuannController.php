@@ -21,13 +21,11 @@ class TujuannController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode' => 'required|unique:tujuan_latihan,kode|max:10',
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
         ]);
 
         TujuanLatihan::create([
-            'kode' => $request->kode,
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
         ]);
@@ -44,14 +42,12 @@ class TujuannController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'kode' => 'required|unique:tujuan_latihan,kode,' . $id . '|max:10',
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
         ]);
 
         $tujuan = TujuanLatihan::findOrFail($id);
         $tujuan->update([
-            'kode' => $request->kode,
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
         ]);

@@ -40,6 +40,10 @@
                             <td class="px-4 py-2 border">{{ $konsultasi->tujuanLatihan->nama ?? '-' }}</td>
                         </tr>
                         <tr>
+                            <th class="px-4 py-2 border">Kondisi Tubuh</th>
+                            <td class="px-4 py-2 border">{{ $konsultasi->kondisiTubuh->Kondisi ?? '-' }}</td>
+                        </tr>
+                        <tr>
                             <th class="px-4 py-2 border">Target Otot</th>
                             <td class="px-4 py-2 border">
                                 @foreach($konsultasi->targetOtot as $otot)

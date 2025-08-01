@@ -21,11 +21,10 @@ class TargetOtotController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode' => 'required|unique:target_otot,kode',
             'fokus' => 'required|string|max:255',
         ]);
 
-        TargetOtot::create($request->only('kode', 'fokus'));
+        TargetOtot::create($request->only( 'fokus'));
 
         return redirect()->route('admin.otot')->with('success', 'Target Otot berhasil ditambahkan');
     }
@@ -39,12 +38,11 @@ class TargetOtotController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kode' => 'required|unique:target_otot,kode,' . $id,
             'fokus' => 'required|string|max:255',
         ]);
 
         $targetOtot = TargetOtot::findOrFail($id);
-        $targetOtot->update($request->only('kode', 'fokus'));
+        $targetOtot->update($request->only( 'fokus'));
 
         return redirect()->route('admin.otot')->with('success', 'Target Otot berhasil diperbarui');
     }

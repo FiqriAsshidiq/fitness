@@ -11,11 +11,6 @@
                 @csrf
 
                 <div class="mb-4">
-                    <label class="block font-semibold">Kode Rule</label>
-                    <input type="text" name="kode" class="form-input w-full" value="{{ old('kode') }}" required>
-                </div>
-
-                <div class="mb-4">
                     <label class="block font-semibold">Tingkat Pengalaman</label>
                     <select name="pengalaman_id" class="form-select w-full" required>
                         <option value="">-- Pilih Pengalaman --</option>

@@ -11,7 +11,7 @@ class Pengalaman extends Model
 
     protected $table = 'pengalaman';
 
-    protected $fillable = ['kode','level', 'deskripsi'];
+    protected $fillable = ['level', 'deskripsi'];
     
     public function rules()
     {

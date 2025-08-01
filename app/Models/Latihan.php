@@ -12,7 +12,6 @@ class Latihan extends Model
     protected $table = 'latihan';
 
     protected $fillable = [
-        'kode',
         'nama_teknik',
         'alat',
         'kategori_otot',

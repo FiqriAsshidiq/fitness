@@ -13,26 +13,36 @@
                     @csrf
                     @method('PUT')
 
-                    <div class="mb-4">
-                        <label class="block font-semibold">Kode</label>
-                        <input type="text" name="kode" value="{{ old('kode', $latihan->kode) }}" class="form-control w-full border rounded px-3 py-2" required>
-                    </div>
 
-                    <div class="mb-4">
-                        <label class="block font-semibold">Nama Teknik</label>
-                        <input type="text" name="nama_teknik" value="{{ old('nama_teknik', $latihan->nama_teknik) }}" class="form-control w-full border rounded px-3 py-2" required>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="block font-semibold">Alat</label>
-                        <input type="text" name="alat" value="{{ old('alat', $latihan->alat) }}" class="form-control w-full border rounded px-3 py-2" required>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="block font-semibold">Kategori Otot</label>
-                        <input type="text" name="kategori_otot" value="{{ old('kategori_otot', $latihan->kategori_otot) }}" class="form-control w-full border rounded px-3 py-2" required>
-                    </div>
-                    
+                <div class="mb-4">
+                    <label class="block font-semibold">Nama Teknik</label>
+                    <input type="text" name="nama_teknik" class="form-control w-full border rounded px-3 py-2"
+                        value="{{ old('nama_teknik') }}" required>
+
+                    @error('nama_teknik')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-semibold">Alat</label>
+                    <input type="text" name="alat" class="form-control w-full border rounded px-3 py-2"
+                        value="{{ old('alat') }}" required>
+
+                    @error('alat')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="block font-semibold">Kategori Otot</label>
+                    <input type="text" name="kategori_otot" class="form-control w-full border rounded px-3 py-2"
+                        value="{{ old('kategori_otot') }}" required>
+
+                    @error('kategori_otot')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
                     <div class="flex items-center gap-4">
                         <button class="btn btn-success">Update</button>
                         <a href="{{ route('admin.latihan') }}" class="btn btn-secondary">Batal</a>

@@ -24,7 +24,6 @@
                     <x-slot name="header">
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Kode</th>
                             <th class="text-center">Nama Kondisi</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -33,7 +32,6 @@
                     @foreach($kondisi as $index => $item)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>                            
-                            <td class="text-center">{{ $item->kode }}</td>
                             <td class="text-center">{{ $item->Kondisi }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.kondisi_tubuh.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>

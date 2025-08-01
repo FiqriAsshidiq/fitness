@@ -10,7 +10,7 @@ class Rule extends Model
     use HasFactory;
     protected $table = 'rules';
     protected $fillable = [
-        'kode', 
+        
         'pengalaman_id',
         'tujuan_latihan_id',
         'kondisi_tubuh_id',

@@ -60,11 +60,11 @@ public function proses(Request $request)
     switch ($tujuanLower) {
         case 'fat loss':
         case 'cutting':
-            $kalori = $tdee - 500;
+            $kalori = $tdee - 200;
             $protein = $bb * 2.2;
             break;
         case 'bulking':
-            $kalori = $tdee + 300;
+            $kalori = $tdee + 200;
             $protein = $bb * 2.0;
             break;
         case 'maintenance':
@@ -95,6 +95,7 @@ public function proses(Request $request)
     $rules = Rule::with('targetOtot', 'rekomendasi')
         ->where('pengalaman_id', $request->pengalaman_id)
         ->where('tujuan_latihan_id', $request->tujuan_latihan_id)
+        ->where('kondisi_tubuh_id', $request->kondisi_tubuh_id)
         ->get();
 
     foreach ($rules as $rule) {

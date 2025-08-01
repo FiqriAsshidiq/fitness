@@ -21,18 +21,29 @@ class TingkatPengalamanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode' => 'required|unique:pengalaman,kode|max:10',
-            'level' => 'required|unique:pengalaman,level|max:50',
-            'deskripsi' => 'required|string|max:255',
+            'level' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z\s]+$/',
+                'max:255',
+                'unique:tingkat_pengalaman,level',
+            ],
+            'deskripsi' => [
+                'required',
+                'string',
+                'max:1000',
+            ],
+        ], [
+            'level.required' => 'Level harus diisi.',
+            'level.regex' => 'Level hanya boleh berisi huruf dan spasi.',
+            'level.unique' => 'Level ini sudah ada.',
+            'deskripsi.required' => 'Deskripsi harus diisi.',
         ]);
 
-        Pengalaman::create([
-            'kode' => $request->kode,
-            'level' => $request->level,
-            'deskripsi' => $request->deskripsi,
-        ]);
+        TingkatPengalaman::create($request->all());
 
-        return redirect()->route('admin.pengalaman')->with('success', 'Tingkat pengalaman berhasil ditambahkan');
+        return redirect()->route('admin.pengalaman.index')
+            ->with('success', 'Data pengalaman berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -41,22 +52,31 @@ class TingkatPengalamanController extends Controller
         return view('admin.pengalaman.edit', compact('pengalaman'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, TingkatPengalaman $pengalaman)
     {
         $request->validate([
-            'kode' => 'required|unique:pengalaman,kode,' . $id . '|max:10',
-            'level' => 'required|unique:pengalaman,level,' . $id . '|max:50',
-            'deskripsi' => 'required|string|max:255',
+            'level' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z\s]+$/',
+                'max:255',
+                'unique:tingkat_pengalaman,level,' . $pengalaman->id,
+            ],
+            'deskripsi' => [
+                'required',
+                'string',
+                'max:1000',
+            ],
+        ], [
+            'level.required' => 'Level harus diisi.',
+            'level.regex' => 'Level hanya boleh berisi huruf dan spasi.',
+            'level.unique' => 'Level ini sudah ada.',
+            'deskripsi.required' => 'Deskripsi harus diisi.',
         ]);
 
-        $pengalaman = Pengalaman::findOrFail($id);
-        $pengalaman->update([
-            'kode' => $request->kode,
-            'level' => $request->level,
-            'deskripsi' => $request->deskripsi,
-        ]);
+        $pengalaman->update($request->all());
 
-        return redirect()->route('admin.pengalaman')->with('success', 'Tingkat pengalaman berhasil diperbarui');
+        return redirect()->route('admin.pengalaman.index')->with('success', 'Data pengalaman berhasil diperbarui.');
     }
 
     public function destroy($id)

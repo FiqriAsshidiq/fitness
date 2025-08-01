@@ -23,6 +23,7 @@
                 <x-table>
                     <x-slot name="header">
                         <tr>
+                            <th class="text-center">No</th>
                             <th class="text-center">Nama Makanan</th>
                             <th class="text-center">Kategori</th>
                             <th class="text-center">Energi (kkal)</th>
@@ -33,9 +34,9 @@
                             <th class="text-center">Aksi</th>
                         </tr>
                     </x-slot>
-
-                    @foreach($nutrisi as $item)
+                    @foreach($nutrisi as $index => $item)
                         <tr>
+                            <td class="text-center">{{ $index + 1 }}</td>                                                        
                             <td class="text-center">{{ $item->nama_makanan }}</td>
                             <td class="text-center">{{ $item->kategori }}</td>
                             <td class="text-center">{{ $item->energi ?? '-' }}</td>

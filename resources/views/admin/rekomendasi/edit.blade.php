@@ -12,12 +12,6 @@
                     @csrf @method('PUT')
 
                     <div class="mb-3">
-                        <label for="kode" class="form-label">Kode</label>
-                        <input type="text" name="kode" class="form-control" required value="{{ $rekomendasi->kode }}">
-                        @error('kode') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="mb-3">
                         <label for="rule_id" class="form-label">Pilih Aturan</label>
                         <select name="rule_id" class="form-control" required>
                             @foreach ($rules as $rule)

@@ -23,17 +23,21 @@ class KondisiTubuhController extends Controller
 
     // Simpan data baru ke database
     public function store(Request $request)
-    
     {
         $request->validate([
-            'kode' => 'required|unique:kondisi_tubuh,kode',            
-            'kondisi' => 'required|string|max:255',
+            'kondisi' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z\s]+$/', 
+                'max:255',
+                'unique:kondisi_tubuh,kondisi', 
+            ],
+        ], [
+            'kondisi.regex' => 'Kondisi hanya boleh berisi huruf dan spasi, contoh "Sehat" atau "Cedera Ringan".',
+            'kondisi.unique' => 'Kondisi ini sudah ada, silakan gunakan nama lain.',
         ]);
 
-        KondisiTubuh::create([
-            'kode' => $request->kode,
-            'kondisi' => $request->kondisi,
-        ]);
+        KondisiTubuh::create(['kondisi' => $request->kondisi,]);
 
         return redirect()->route('admin.kondisi_tubuh')->with('success', 'Kondisi tubuh berhasil ditambahkan.');
     }
@@ -46,21 +50,29 @@ class KondisiTubuhController extends Controller
     }
 
     // Simpan update data
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'kode' => 'required|string|max:255',
-            'kondisi' => 'required|string|max:255',
-        ]);
+public function update(Request $request, string $id)
+{
+    $kondisi = KondisiTubuh::findOrFail($id);
 
-        $kondisi = KondisiTubuh::findOrFail($id);
-        $kondisi->update([
-            'kode' => $request->kode,
-            'kondisi' => $request->kondisi,
-        ]);
+    $request->validate([
+        'kondisi' => [
+            'required',
+            'string',
+            'regex:/^[a-zA-Z\s]+$/',
+            'max:255',
+            'unique:kondisi_tubuh,kondisi,' . $kondisi->id, 
+        ],
+    ], [
+        'kondisi.regex' => 'Kondisi hanya boleh berisi huruf dan spasi.',
+        'kondisi.unique' => 'Kondisi ini sudah ada.',
+    ]);
 
-        return redirect()->route('admin.kondisi_tubuh')->with('success', 'Kondisi tubuh berhasil diupdate.');
-    }
+    $kondisi->update([
+        'kondisi' => $request->kondisi,
+    ]);
+
+    return redirect()->route('admin.kondisi_tubuh')->with('success', 'Kondisi tubuh berhasil diupdate.');
+}
 
     // Hapus data
     public function destroy(string $id)

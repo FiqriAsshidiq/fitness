@@ -7,14 +7,10 @@
 
     <div class="py-10">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 bg-white p-6 rounded shadow">
-<form method="POST" action="{{ route('admin.rule.update', $rule->id) }}">
+            <form method="POST" action="{{ route('admin.rule.update', $rule->id) }}">
                 @csrf
                 @method('PUT')
 
-                <div class="mb-4">
-                    <label class="block font-semibold">Kode Rule</label>
-                    <input type="text" name="kode" class="form-input w-full" value="{{ old('kode', $rule->kode) }}" required>
-                </div>
 
                 <div class="mb-4">
                     <label class="block font-semibold">Tingkat Pengalaman</label>

@@ -13,21 +13,19 @@
                     @method('PUT')
 
                     <div class="mb-4">
-                        <label for="kode" class="block font-medium">Kode</label>
-                        <input type="text" name="kode" id="kode" class="form-input w-full" required value="{{ old('kode', $pengalaman->kode) }}">
-                        @error('kode') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
-                    </div>
-
-                    <div class="mb-4">
                         <label for="level" class="block font-medium">Level</label>
                         <input type="text" name="level" id="level" class="form-input w-full" required value="{{ old('level', $pengalaman->level) }}">
-                        @error('level') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        @error
+                        ('level') <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label for="deskripsi" class="block font-medium">Deskripsi</label>
                         <textarea name="deskripsi" id="deskripsi" rows="4" class="form-textarea w-full" required>{{ old('deskripsi', $pengalaman->deskripsi) }}</textarea>
-                        @error('deskripsi') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        @error
+                        ('deskripsi') <p class="text-red-500 text-sm">{{ $message }}</p> 
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update</button>

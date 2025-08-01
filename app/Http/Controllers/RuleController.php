@@ -31,7 +31,6 @@ class RuleController extends Controller
     
     {
         $request->validate([
-            'kode' => 'required',
             'pengalaman_id' => 'required|exists:pengalaman,id',
             'tujuan_latihan_id' => 'required|exists:tujuan_latihan,id',
             'kondisi_tubuh_id' => 'required|exists:kondisi_tubuh,id',
@@ -41,7 +40,6 @@ class RuleController extends Controller
         ]);
 
         $rule = Rule::create([
-            'kode' => $request->kode,
             'pengalaman_id' => $request->pengalaman_id,
             'tujuan_latihan_id' => $request->tujuan_latihan_id,
             'kondisi_tubuh_id' => $request->kondisi_tubuh_id,
@@ -69,7 +67,6 @@ class RuleController extends Controller
         $rule = Rule::findOrFail($id);
 
         $request->validate([
-            'kode' => 'required',
             'pengalaman_id' => 'required|exists:pengalaman,id',
             'tujuan_latihan_id' => 'required|exists:tujuan_latihan,id',
             'kondisi_tubuh_id' => 'required|exists:kondisi_tubuh,id',            
@@ -77,7 +74,6 @@ class RuleController extends Controller
         ]);
 
         $rule->update([
-            'kode' => $request->kode,
             'pengalaman_id' => $request->pengalaman_id,
             'tujuan_latihan_id' => $request->tujuan_latihan_id,
             'kondisi_tubuh_id' => $request->kondisi_tubuh_id,

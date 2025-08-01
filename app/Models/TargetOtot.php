@@ -9,7 +9,7 @@ class TargetOtot extends Model
 {
     use HasFactory;
     protected $table = 'target_otot';
-    protected $fillable = ['kode', 'fokus'];
+    protected $fillable = ['fokus'];
 
     public function rules()
     {

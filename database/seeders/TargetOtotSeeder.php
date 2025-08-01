@@ -14,9 +14,9 @@ class TargetOtotSeeder extends Seeder
 public function run(): void
     {
         $data = [
-        ['kode' => 'U01', 'fokus' => 'upper body'],
-        ['kode' => 'L01', 'fokus' => 'lower body'],
-        ['kode' => 'F01', 'fokus' => 'full body'],
+        ['fokus' => 'upper body'],
+        ['fokus' => 'lower body'],
+        ['fokus' => 'full body'],
         ];
 
         foreach ($data as $item) {

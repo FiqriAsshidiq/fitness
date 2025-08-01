@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('rekomendasi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rule_id');
-            $table->string('kode');
             $table->string('metode_latihan');
             $table->text('nutrisi');
             $table->text('catatan');

@@ -23,6 +23,7 @@
                 <x-table>
                     <x-slot name="header">
                         <tr>
+                            <th class="text-center">No</th>
                             <th class="text-center">Nama Gerakan</th>
                             <th class="text-center">Target Otot</th>
                             <th class="text-center">Deskripsi</th>
@@ -30,9 +31,9 @@
                             <th class="text-center">Aksi</th>
                         </tr>
                     </x-slot>
-
-                    @foreach($gerakan as $item)
+                    @foreach($gerakan as $index => $item)
                         <tr>
+                            <td class="text-center">{{ $index + 1 }}</td>                            
                             <td class="text-center">{{ $item->nama_gerakan }}</td>
                             <td class="text-center">{{ $item->target_otot }}</td>
                             <td style="white-space: normal; max-width: 200px; vertical-align: top;">{{ $item->deskripsi }}</td>

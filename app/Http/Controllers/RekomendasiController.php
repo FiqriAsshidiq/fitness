@@ -6,6 +6,7 @@ use App\Models\Rekomendasi;
 use App\Models\Rule;
 use App\Models\Latihan;
 
+
 class RekomendasiController extends Controller
 {
     public function index()
@@ -26,7 +27,6 @@ public function store(Request $request)
 {
     $request->validate([
         'rule_id' => 'required|exists:rules,id',
-        'kode' => 'required|string|max:255',
         'metode_latihan' => 'required|string|max:255',
         'nutrisi' => 'required|string',
         'catatan' => 'required|string',
@@ -35,7 +35,6 @@ public function store(Request $request)
 
     $rekomendasi = Rekomendasi::create([
         'rule_id' => $request->rule_id,
-        'kode' => $request->kode,
         'metode_latihan' => $request->metode_latihan,
         'nutrisi' => $request->nutrisi,
         'catatan' => $request->catatan,
@@ -62,7 +61,6 @@ public function update(Request $request, $id)
 
     $request->validate([
         'rule_id' => 'required|exists:rules,id',
-        'kode' => 'required|unique:rekomendasi,kode,' . $id,
         'metode_latihan' => 'nullable|string',
         'nutrisi' => 'nullable|string',
         'catatan' => 'nullable|string',
@@ -71,7 +69,6 @@ public function update(Request $request, $id)
 
     $rekomendasi->update([
         'rule_id' => $request->rule_id,
-        'kode' => $request->kode,
         'metode_latihan' => $request->metode_latihan,
         'nutrisi' => $request->nutrisi,
         'catatan' => $request->catatan,

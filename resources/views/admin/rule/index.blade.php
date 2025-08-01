@@ -25,7 +25,6 @@
                     <x-slot name="header">
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Kode</th>
                             <th class="text-center">Tingkat Pengalaman</th>
                             <th class="text-center">Tujuan</th>
                             <th class="text-center">Target Otot</th>
@@ -37,7 +36,6 @@
                     @forelse ($rules as $index => $rule)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
-                            <td class="text-center">{{ $rule->kode }}</td>
                             <td class="text-center">{{ $rule->pengalaman->level ?? '-' }}</td>
                             <td class="text-center">{{ $rule->tujuanLatihan->nama ?? '-' }}</td>
                             <td class="text-center">

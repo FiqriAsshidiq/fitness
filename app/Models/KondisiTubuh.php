@@ -12,7 +12,7 @@ class KondisiTubuh extends Model
 
     protected $table = 'kondisi_tubuh';
 
-    protected $fillable = ['kode','kondisi'];
+    protected $fillable = ['kondisi'];
 
     public function rules()
     {

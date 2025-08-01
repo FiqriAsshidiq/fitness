@@ -16,17 +16,17 @@ class PengalamanSeeder extends Seeder
     {
 $data = [
         [
-            'kode' => 'P1',
+            // 'kode' => 'P1',
             'level' => 'Pemula',
             'deskripsi' => ' baru latihan mengenal gym 1-3 bulan',
         ],
         [
-            'kode' => 'P2',
+            // 'kode' => 'P2',
             'level' => 'Menengah',
             'deskripsi' => 'sudah terbiasa dan rutin latihan gym 3-6 bulan',
         ],
         [
-            'kode' => 'P3',
+            // 'kode' => 'P3',
             'level' => 'Lanjutan',
             'deskripsi' => 'berpengalaman dan fokus membentuk otot',
         ],

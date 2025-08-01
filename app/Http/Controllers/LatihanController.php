@@ -19,19 +19,46 @@ class LatihanController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'kode' => 'required|unique:latihan,kode',
-            'nama_teknik' => 'required|string|max:255',
-            'alat' => 'required|string|max:255',
-            'kategori_otot' => 'required|string|max:255',
-        ]);
+        {
+            // Validasi input
+            $request->validate([
+                'nama_teknik' => [
+                    'required',
+                    'string',
+                    'regex:/^[a-zA-Z\s]+$/',
+                    'max:255',
+                    'unique:latihan,nama_teknik',
+                ],
+                'alat' => [
+                    'required',
+                    'string',
+                    'max:1000',
+                ],
+                'kategori_otot' => [
+                    'required',
+                    'string',
+                    'max:1000',
+                ],
+            ], [
+                'nama_teknik.required' => 'Nama teknik harus diisi.',
+                'nama_teknik.regex' => 'Nama teknik hanya boleh berisi huruf dan spasi.',
+                'nama_teknik.unique' => 'Nama teknik ini sudah ada.',
+                'alat.required' => 'Alat harus diisi.',
+                'kategori_otot.required' => 'Kategori otot harus diisi.',
+            ]);
 
-        Latihan::create($request->only('kode', 'nama_teknik', 'alat', 'kategori_otot'));
+            // Simpan ke database
+            Latihan::create($request->only('nama_teknik', 'alat', 'kategori_otot'));
 
-        return redirect()->route('admin.latihan')->with('success', 'Teknik latihan berhasil ditambahkan.');
-    }
+            // Redirect kembali dengan pesan sukses
+            return redirect()->route('admin.latihan')->with('success', 'Teknik latihan berhasil ditambahkan.');
+        }
 
+    // 
+
+    
+
+    // 
     public function edit($id)
     {
         $latihan = Latihan::findOrFail($id);
@@ -43,17 +70,35 @@ class LatihanController extends Controller
         $latihan = Latihan::findOrFail($id);
 
         $request->validate([
-            'kode' => 'required|unique:latihan,kode,' . $id,
-            'nama_teknik' => 'required|string|max:255',
-            'alat' => 'required|string|max:255',
-            'kategori_otot' => 'required|string|max:255',
+            'nama_teknik' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z\s]+$/',
+                'max:255',
+                'unique:latihan,nama_teknik,' . $latihan->id,
+            ],
+            'alat' => [
+                'required',
+                'string',
+                'max:1000',
+            ],
+            'kategori_otot' => [
+                'required',
+                'string',
+                'max:1000',
+            ],
+        ], [
+            'nama_teknik.required' => 'Nama teknik harus diisi.',
+            'nama_teknik.regex' => 'Nama teknik hanya boleh berisi huruf dan spasi.',
+            'nama_teknik.unique' => 'Nama teknik ini sudah ada.',
+            'alat.required' => 'Alat harus diisi.',
+            'kategori_otot.required' => 'Kategori otot harus diisi.',
         ]);
 
-        $latihan->update($request->only('kode', 'nama_teknik', 'alat', 'kategori_otot'));
+        $latihan->update($request->only('nama_teknik', 'alat', 'kategori_otot'));
 
-        return redirect()->route('admin.latihan')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.latihan')->with('success', 'Teknik latihan berhasil diperbarui.');
     }
-
     public function destroy($id)
     {
         $latihan = Latihan::findOrFail($id);

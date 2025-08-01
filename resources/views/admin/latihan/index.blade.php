@@ -23,23 +23,22 @@
                 <x-table>
                     <x-slot name="header">
                         <tr>
-                            <th class="text-center">Kode</th>
+                            <th class="text-center">No</th>
                             <th class="text-center">Nama Teknik</th>
                             <th class="text-center">Alat</th>
                             <th class="text-center">Kategori Otot</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </x-slot>
-
-                    @foreach($latihan as $latihan)
-                        <tr>
-                            <td class="text-center">{{ $latihan->kode }}</td>
-                            <td class="text-center">{{ $latihan->nama_teknik }}</td>
-                            <td class="text-center">{{ $latihan->alat }}</td>
-                            <td class="text-center">{{ $latihan->kategori_otot }}</td>
+                    @foreach($latihan as $index => $item)
+                        <tr>                        <tr>
+                            <td class="text-center">{{ $index + 1 }}</td>
+                            <td class="text-center">{{ $item->nama_teknik }}</td>
+                            <td class="text-center">{{ $item->alat }}</td>
+                            <td class="text-center">{{ $item->kategori_otot }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.latihan.edit', $latihan->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('admin.latihan.destroy', $latihan->id) }}" method="POST" style="display:inline;">
+                                <a href="{{ route('admin.latihan.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="{{ route('admin.latihan.destroy', $item->id) }}" method="POST" style="display:inline;">
                                     @csrf @method('DELETE')
                                     <button onclick="return confirm('Yakin hapus?')" class="btn btn-sm btn-danger">Hapus</button>
                                 </form>

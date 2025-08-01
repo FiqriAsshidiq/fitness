@@ -14,11 +14,6 @@
                     @method('PUT')
 
                     <div class="mb-4">
-                        <label class="block font-semibold">Kode</label>
-                        <input type="text" name="kode" value="{{ old('kode', $targetOtot->kode) }}" class="form-control w-full border rounded px-3 py-2" required>
-                    </div>
-
-                    <div class="mb-4">
                         <label class="block font-semibold">Fokus</label>
                         <input type="text" name="fokus" value="{{ old('fokus', $targetOtot->fokus) }}" class="form-control w-full border rounded px-3 py-2" required>
                     </div>

@@ -12,7 +12,6 @@ class TujuanLatihan extends Model
     protected $table = 'tujuan_latihan';
 
     protected $fillable = [
-        'kode',
         'nama',
         'deskripsi'
     ];

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengalaman', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');            
-            $table->string('level')->unique(); // contoh: pemula, menengah, lanjutan
+            $table->string('level')->unique(); 
             $table->text('deskripsi')->nullable();
             $table->timestamps();       
          });

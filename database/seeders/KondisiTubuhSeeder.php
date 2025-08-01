@@ -10,11 +10,11 @@ class KondisiTubuhSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['kode' => 'K01', 'Kondisi' => 'Sehat'],
-            ['kode' => 'K02', 'Kondisi' => 'Pengidap CVD'],
-            ['kode' => 'K03', 'Kondisi' => 'Pengidap Gerd'],
-            ['kode' => 'K04', 'Kondisi' => 'Pengidap Asma'],
-            ['kode' => 'K05', 'Kondisi' => 'Cedera Bahu'],
+            [ 'Kondisi' => 'Sehat'],
+            [ 'Kondisi' => 'Pengidap CVD'],
+            [ 'Kondisi' => 'Pengidap Gerd'],
+            [ 'Kondisi' => 'Pengidap Asma'],
+            [ 'Kondisi' => 'Cedera Bahu'],
         ];
 
         DB::table('kondisi_tubuh')->insert($data);

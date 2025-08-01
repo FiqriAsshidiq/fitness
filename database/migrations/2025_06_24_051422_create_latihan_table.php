@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('latihan', function (Blueprint $table) {
             $table->id();
-            $table->string('kode')->unique();
             $table->string('nama_teknik');
             $table->string('alat');
             $table->string('kategori_otot');
